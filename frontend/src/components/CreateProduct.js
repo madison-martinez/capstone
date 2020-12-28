@@ -1,19 +1,32 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux'
 import Form from './styles/FormStyles';
 import * as actions from '../actions/product';
+import useForm from '../utils/useForm';
 
 const CreateProduct = (props) => {
-    
-    useEffect(() => {
-        props.fetchAllProducts()
+
+    const { values, handleChange, setInitialForm } = useForm({
+        title: 'Yummy Goods',
+        description: 'Yum Yum in my Tum Tum', 
+        price: 40.00
     });
+
+    const onSuccess = () => setInitialForm();
+
+    const handleSubmit = e => {
+        e.preventDefault();
+        props.createProduct(values, () => {window.alert('created a new product')})
+    }
 
     return (
         <>
-        <Form>
+        <Form
+            data-testid="form"
+            onSubmit={handleSubmit}                                //TODO POST INFO TO API AND DB
+        >
             <fieldset>
-                <label htmlFor="file">
+                {/* <label htmlFor="file">
                     Image
                     <input
                         type="file"
@@ -21,19 +34,30 @@ const CreateProduct = (props) => {
                         name="image"
                         placeholder="Upload an image"
                         required
-                        // onChange={handleChange}
+                        onChange={handleChange}
                     />
-                </label>
+                </label> */}
                 <label htmlFor="name">
-                    Name
+                    Title
                     <input
                         type="text"
-                        id="name"
-                        name="name"
-                        placeholder="Name"
+                        id="title"
+                        name="title"
+                        placeholder="Title"
                         required
-                        // value={inputs.name}
-                        // onChange={handleChange}
+                        value={values.title}
+                        onChange={handleChange}
+                    />
+                </label>
+                <label htmlFor="description">
+                    Description
+                    <textarea
+                        id="description"
+                        name="description"
+                        placeholder="Description"
+                        required
+                        value={values.description}
+                        onChange={handleChange}
                     />
                 </label>
                 <label htmlFor="price">
@@ -44,36 +68,23 @@ const CreateProduct = (props) => {
                         name="price"
                         placeholder="Price"
                         required
-                        // value={inputs.price}
-                        // onChange={handleChange}
-                    />
-                </label>
-                <label htmlFor="description">
-                    Description
-                    <textarea
-                        id="description"
-                        name="description"
-                        placeholder="Description"
-                        required
-                        // value={inputs.description}
-                        // onChange={handleChange}
+                        value={values.price}
+                        onChange={handleChange}
                     />
                 </label>
                 <button type="submit">Submit</button>
             </fieldset>
         </Form>
-        <div>
-        {props.productList.map((item, index) => {
-                return <p>{item.title}</p>
-        })}
-        </div>
         </>
     )
 }
 
 const mapStateToProps = state => ({ productList: state.product.list });
 
-const mapActionsToProps = { fetchAllProducts: actions.fetchAll };
+const mapActionsToProps = { 
+    createProduct: actions.create,
+    updateProduct: actions.update
+};
 
 
 export default connect(mapStateToProps, mapActionsToProps)(CreateProduct);
