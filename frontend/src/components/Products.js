@@ -26,10 +26,8 @@ function Products({ productList, fetchAllProducts }) {
     return (
         <Center>
           <ProductsList>
-            {productList.map((item, index) => (
-                <>
-                <Product product={item} key={index} id={item.id} />
-                </>
+            {productList.map((item) => (
+                <Product product={item} key={item.id} id={item.id} />
             ))}
           </ProductsList>
         </Center>
