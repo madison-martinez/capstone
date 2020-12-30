@@ -12,7 +12,7 @@ const theme = {
     darkBlue: "#005874",
     blue: "#008BA8",
     maxWidth: '1000px'
-}
+};
 
 const StyledPage = styled.div`
     background: white;
@@ -61,4 +61,4 @@ export default class Page extends Component {
             </ThemeProvider>
         )
     }
-}
+};

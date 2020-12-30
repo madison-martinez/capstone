@@ -10,6 +10,6 @@ const Meta = () => (
         {/* <link rel="stylesheet" type="text/css" href="" /> */}
         <title>Farmer's Special</title>
     </Head>
-)
+);
 
 export default Meta;

@@ -4,6 +4,8 @@ import { useState } from 'react';
 
 export default function useForm(initialState = {}) {
     const [values, setValues] = useState(initialState);
+    const [ selectedId, setSelectedId ] = useState(0);
+
 
     function handleChange(e) {
         let { value, name, type } = e.target;
@@ -30,10 +32,16 @@ export default function useForm(initialState = {}) {
         setValues(initialState);
     }
 
+    function selectId() {
+        setSelectedId(selectedId);
+    }
+
     return {
         values, 
+        setValues,
         handleChange, 
         clearForm, 
-        setInitialForm
+        setInitialForm,
+        selectId
     }
 }

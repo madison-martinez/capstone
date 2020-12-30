@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux'
 import * as actions from '../actions/product';
+import Product from './Product';
  
 
 const ProductsList = styled.div`
@@ -16,18 +17,20 @@ const Center = styled.div`
     text-align: center;
 `;
 
-function Products({ ...props }) {
+function Products({ productList, fetchAllProducts }) {
     //call api fetchAll req
     useEffect(() => {
-        props.fetchAllProducts()
-    });
+        fetchAllProducts()
+    }, [fetchAllProducts]);
 
     return (
         <Center>
           <ProductsList>
-            {props.productList.map((item, index) => {
-                return <p key={index}>{item.title}</p>
-            })};
+            {productList.map((item, index) => (
+                <>
+                <Product product={item} key={index} id={item.id} />
+                </>
+            ))}
           </ProductsList>
         </Center>
     )
@@ -36,6 +39,8 @@ function Products({ ...props }) {
 
 const mapStateToProps = state => ({ productList: state.product.list });
 
-const mapActionsToProps = { fetchAllProducts: actions.fetchAll };
+const mapActionsToProps = { 
+    fetchAllProducts: actions.fetchAll
+};
 
 export default connect(mapStateToProps, mapActionsToProps)(Products);

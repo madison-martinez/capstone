@@ -1,24 +1,27 @@
-import React from 'react';
+import React, { useEffect }from 'react';
 import { connect } from 'react-redux'
 import Form from './styles/FormStyles';
 import * as actions from '../actions/product';
 import useForm from '../utils/useForm';
 
-const CreateProduct = (props) => {
-
-    const { values, handleChange, setInitialForm } = useForm({
-        title: 'Yummy Goods',
-        description: 'Yum Yum in my Tum Tum', 
-        price: 40.00
+const UpdateProduct = ({ id, productList, updateProduct, fetchAllProducts }) => {
+    const { values, setValues, handleChange } = useForm({
+        title: '',
+        description: '', 
+        price: 0
     });
+   
+    useEffect(() => {
+        // fetchSingleProduct(id)
+        fetchAllProducts()
+        setValues({...productList.find(item => item.id === parseInt(id))})
+    }, []);
 
-    const onSuccess = () => setInitialForm();
 
     const handleSubmit = e => {
         e.preventDefault();
-        props.createProduct(values, () => {window.alert('created a new product')})
-        onSuccess();
-    }
+        updateProduct(id, values, () => {window.alert('updated a new product')})
+    };
 
     return (
         <>
@@ -27,17 +30,6 @@ const CreateProduct = (props) => {
             onSubmit={handleSubmit}                                //TODO POST INFO TO API AND DB
         >
             <fieldset>
-                {/* <label htmlFor="file">
-                    Image
-                    <input
-                        type="file"
-                        id="file"
-                        name="image"
-                        placeholder="Upload an image"
-                        required
-                        onChange={handleChange}
-                    />
-                </label> */}
                 <label htmlFor="title">
                     Title
                     <input
@@ -83,8 +75,9 @@ const CreateProduct = (props) => {
 const mapStateToProps = state => ({ productList: state.product.list });
 
 const mapActionsToProps = { 
-    createProduct: actions.create,
+    updateProduct: actions.update,
+    fetchAllProducts: actions.fetchAll
 };
 
 
-export default connect(mapStateToProps, mapActionsToProps)(CreateProduct);
+export default connect(mapStateToProps, mapActionsToProps)(UpdateProduct);

@@ -4,8 +4,8 @@ export const ACTION_TYPES = {
     CREATE: 'CREATE',
     UPDATE: 'UPDATE',
     DELETE: 'DELETE',
-    FETCH_ALL: 'FETCH'
-}
+    FETCH_ALL: 'FETCH',
+};
 
 export const fetchAll = () => dispatch => {
     //GET REQUEST
@@ -18,7 +18,7 @@ export const fetchAll = () => dispatch => {
         })
     })
     .catch(error => console.log(error)); //TODO SHOW ERRORS TO USER
-}
+};
 
 export const create = ( data, onSuccess ) => dispatch => {
     //POST REQUEST
@@ -31,12 +31,13 @@ export const create = ( data, onSuccess ) => dispatch => {
         onSuccess();
     })
     .catch(error => console.log(error));
-}
+};
 
 export const update = ( data, id, onSuccess ) => dispatch => {
     //PUT REQUEST
     api.product().update( data, id )
-    .then(response => {
+    .then(
+        response => {
         dispatch({
             type: ACTION_TYPES.UPDATE,
             payload: { ...data, id }
@@ -44,11 +45,11 @@ export const update = ( data, id, onSuccess ) => dispatch => {
         onSuccess();
     })
     .catch(error => console.log(error));
-}
+};
 
 export const deleteProduct = ( id, onSuccess ) => dispatch => {
     //DELETE REQUEST
-    api.product().update(id)
+    api.product().delete(id)
     .then(response => {
         dispatch({
             type: ACTION_TYPES.DELETE,
@@ -57,4 +58,4 @@ export const deleteProduct = ( id, onSuccess ) => dispatch => {
         onSuccess();
     })
     .catch(error => console.log(error));
-}
+};
