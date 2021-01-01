@@ -43,9 +43,6 @@ const GlobalStyles = createGlobalStyle`
         font-family: 'Amatic SC', cursive;
         color: ${theme.darkGreen};
     }
-    button {
-        font-family: 'Amatic SC', cursive;
-    }
 `;
 
 export default class Page extends Component {

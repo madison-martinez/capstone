@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux'
 import * as actions from '../actions/product';
 
-function DeleteButton({ id, deleteProduct}) {
+export const DeleteButton = ({ id, deleteProduct}) => {
     return (
       <button
         type="button"

@@ -1,4 +1,4 @@
-import {HYDRATE} from 'next-redux-wrapper';
+import { HYDRATE } from 'next-redux-wrapper';
 import { ACTION_TYPES } from '../actions/product';
 
 const initialState = {

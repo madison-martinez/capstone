@@ -7,9 +7,9 @@ import useForm from '../utils/useForm';
 const CreateProduct = (props) => {
 
     const { values, handleChange, setInitialForm } = useForm({
-        title: 'Yummy Goods',
-        description: 'Yum Yum in my Tum Tum', 
-        price: 40.00
+        title: '',
+        description: '', 
+        price: 0
     });
 
     const onSuccess = () => setInitialForm();

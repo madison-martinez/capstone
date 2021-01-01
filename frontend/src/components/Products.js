@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { connect } from 'react-redux'
 import * as actions from '../actions/product';
 import Product from './Product';
- 
+
 
 const ProductsList = styled.div`
     display: grid:
@@ -17,7 +17,7 @@ const Center = styled.div`
     text-align: center;
 `;
 
-function Products({ productList, fetchAllProducts }) {
+export const Products = ({ productList, fetchAllProducts }) => {
     //call api fetchAll req
     useEffect(() => {
         fetchAllProducts()
@@ -25,11 +25,11 @@ function Products({ productList, fetchAllProducts }) {
 
     return (
         <Center>
-          <ProductsList>
-            {productList.map((item) => (
-                <Product product={item} key={item.id} id={item.id} />
-            ))}
-          </ProductsList>
+            <ProductsList>
+                {productList.map((item) => (
+                    <Product product={item} key={item.id} id={item.id} />
+                ))}
+            </ProductsList>
         </Center>
     )
 };
@@ -37,7 +37,7 @@ function Products({ productList, fetchAllProducts }) {
 
 const mapStateToProps = state => ({ productList: state.product.list });
 
-const mapActionsToProps = { 
+const mapActionsToProps = {
     fetchAllProducts: actions.fetchAll
 };
 

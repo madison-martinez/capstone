@@ -10,3 +10,5 @@ describe('<Nav />', () => {
         expect(container).toHaveTextContent('Sell');
     })
 });
+
+//TODO Add in tests to test views whether logged in or not
