@@ -9,7 +9,7 @@ function MyApp({ Component, pageProps }) {
     return (
         <Provider store={store}>
             <Page>
-                <Component {...pageProps } />
+                <Component {...pageProps} />
             </Page>
         </Provider>
     );

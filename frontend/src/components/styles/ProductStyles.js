@@ -12,7 +12,7 @@ const Product = styled.div`
             background: ${props => props.theme.darkGreen};
             display: inline;
             line-height: 1;
-            font-size: 2.5rem;
+            font-size: 2rem;
             text-align: center;
             color: white;
             padding: 0 .5rem;   
@@ -21,11 +21,11 @@ const Product = styled.div`
     .button-list {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-        gap: 3rem;
+        gap: 1rem;
         margin: 1rem 3rem ;
         a, button {
             font-family: 'Josefin Slab', serif;
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             background: white;
         }
         & > * {

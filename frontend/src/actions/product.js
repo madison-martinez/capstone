@@ -1,10 +1,12 @@
 import api from './api';
 
+
 export const ACTION_TYPES = {
     CREATE: 'CREATE',
     UPDATE: 'UPDATE',
     DELETE: 'DELETE',
     FETCH_ALL: 'FETCH',
+    FETCH_BY_ID: 'FETCH'
 };
 
 export const fetchAll = () => dispatch => {
@@ -15,6 +17,19 @@ export const fetchAll = () => dispatch => {
         dispatch({
             type: ACTION_TYPES.FETCH_ALL,
             payload: response.data
+        })
+    })
+    .catch(error => console.log(error)); //TODO SHOW ERRORS TO USER
+};
+
+export const fetchById = (id) => dispatch => {
+    //GET REQUEST
+    api.product().fetchById(id)
+    .then(
+        response => {
+        dispatch({
+            type: ACTION_TYPES.FETCH_BY_ID,
+            payload: {...response.data, id}
         })
     })
     .catch(error => console.log(error)); //TODO SHOW ERRORS TO USER

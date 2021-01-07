@@ -12,7 +12,6 @@ const UpdateProduct = ({ id, productList, updateProduct, fetchAllProducts }) => 
     });
 
     useEffect(() => {
-        // fetchSingleProduct(id)
         fetchAllProducts()
         setValues({ ...productList.find(item => item.id === parseInt(id)) })
     }, []);

@@ -3,4 +3,6 @@ import { product } from './product';
 
 export const reducers = combineReducers({
     product
-})
+});
+
+export default reducers;

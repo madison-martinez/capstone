@@ -23,7 +23,13 @@ namespace FarmersSpecial.Controllers
         // GET: api/Product
         public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
         {
-            return await _context.Products.ToListAsync();
+            try {
+                return await _context.Products.ToListAsync();
+            }
+            catch 
+            {
+                throw;
+            }
         }
 
         // GET: api/Product/5
@@ -58,6 +64,8 @@ namespace FarmersSpecial.Controllers
             }
             return product;
         }
+
+        //Pagination 
 
         // Put: Product/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.

@@ -1,39 +1,45 @@
-import React, { useEffect } from 'react';
-import styled from 'styled-components';
-import { connect } from 'react-redux'
+import React, { useEffect, useState } from 'react';
+import { connect } from 'react-redux';
 import * as actions from '../actions/product';
 import Product from './Product';
-
-
-const ProductsList = styled.div`
-    display: grid:
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 3rem;
-    margin: 0 auto;
-    max-width: ${props => props.theme.maxWidth};
-`;
-
-const Center = styled.div`
-    text-align: center;
-`;
+import Pagination from './Pagination';
 
 export const Products = ({ productList, fetchAllProducts }) => {
-    //call api fetchAll req
-    useEffect(() => {
-        fetchAllProducts()
-    }, [fetchAllProducts]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [productsPerPage] = useState(6);
+    const [products, setProducts] = useState([]);
+    const [loading, setLoading] = useState(false);
 
+    useEffect(() => {
+        const fn = async () => {
+            await fetchAllProducts();
+            setProducts(productList);
+            console.log('hehre')
+        };
+        fn();
+    }, []);
+
+    //get current products on page
+    const indexOfLastProduct = currentPage * productsPerPage;
+    const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+    const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
+
+    const paginate = (pageNumber) => setCurrentPage(pageNumber);
+    console.log(products)
     return (
-        <Center>
-            <ProductsList>
-                {productList.map((item) => (
-                    <Product product={item} key={item.id} id={item.id} />
-                ))}
-            </ProductsList>
-        </Center>
+        <>
+            <Pagination
+                productsPerPage={productsPerPage}
+                totalProducts={products.length}
+                paginate={paginate}
+            />
+            <Product
+                products={currentProducts}
+                loading={loading}
+            />
+        </>
     )
 };
-
 
 const mapStateToProps = state => ({ productList: state.product.list });
 

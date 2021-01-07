@@ -3,10 +3,10 @@ import UpdateProduct from '../components/UpdateProduct';
 
 
 function Update({ query }) {
-    return(
+    return (
         <div>
-        <UpdateProduct id={query.id} />
-     </div>
+            <UpdateProduct id={query.id} />
+        </div>
     )
 };
 export default (Update);
