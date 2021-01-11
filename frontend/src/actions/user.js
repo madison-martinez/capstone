@@ -1,5 +1,4 @@
-import { userService } from '../_services';
-import { history } from '../_helpers';
+import { userService } from '../services/user.service';
 
 export const userActions = {
     login,
@@ -29,7 +28,7 @@ export const userConstants = {
     DELETE_FAILURE: 'USERS_DELETE_FAILURE'
 };
 
-function login(username, password, from) {
+function login(username, password) {
     return dispatch => {
         dispatch(request({ username }));
 
@@ -37,7 +36,6 @@ function login(username, password, from) {
             .then(
                 user => {
                     dispatch(success(user));
-                    history.push(from);
                 },
                 error => {
                     dispatch(failure(error.toString()));
@@ -63,7 +61,6 @@ function register(user) {
             .then(
                 user => {
                     dispatch(success());
-                    history.push('/login');
                 },
                 error => {
                     dispatch(failure(error.toString()));

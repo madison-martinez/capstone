@@ -4,7 +4,6 @@ import { useState } from 'react';
 
 export default function useForm(initialState = {}) {
     const [values, setValues] = useState(initialState);
-    const [ selectedId, setSelectedId ] = useState(0);
 
 
     function handleChange(e) {
@@ -19,22 +18,18 @@ export default function useForm(initialState = {}) {
             ...values,
             [name]: value
         });
-    }
+    };
 
     function clearForm() {
         const emptyForm = Object.fromEntries(
             Object.entries(values).map(([key]) => [key, ''])
         );
         setValues(emptyForm);
-    }
+    };
 
     function setInitialForm() {
         setValues(initialState);
-    }
-
-    function selectId() {
-        setSelectedId(selectedId);
-    }
+    };
 
     return {
         values, 
@@ -42,6 +37,5 @@ export default function useForm(initialState = {}) {
         handleChange, 
         clearForm, 
         setInitialForm,
-        selectId
     }
-}
+};
