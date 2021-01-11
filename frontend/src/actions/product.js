@@ -45,7 +45,8 @@ export const create = ( data, onSuccess ) => dispatch => {
         })
         onSuccess();
     })
-    .catch(error => console.log(error));
+    .catch(error => {
+        throw error});
 };
 
 export const update = ( data, id, onSuccess ) => dispatch => {

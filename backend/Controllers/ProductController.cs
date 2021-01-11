@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -6,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using FarmersSpecial.Data;
 using FarmersSpecial.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FarmersSpecial.Controllers
 {
@@ -19,7 +19,7 @@ namespace FarmersSpecial.Controllers
         {
             _context = context;
         }
-
+        [HttpGet]
         // GET: api/Product
         public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
         {
@@ -55,6 +55,7 @@ namespace FarmersSpecial.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        
         public async Task<ActionResult<Product>> CreateProduct([Bind("Id,Title,Description,Price")] Product product)
         {
             if (ModelState.IsValid)
@@ -71,6 +72,7 @@ namespace FarmersSpecial.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPut("{id}")]
+       
         public async Task<ActionResult<Product>> EditProduct(int id, [Bind("Id,Title,Description,Price")] Product product)
         {
             product.Id = id;
@@ -99,6 +101,7 @@ namespace FarmersSpecial.Controllers
 
         // Delete: Product/5
         [HttpDelete("{id}")]
+        
         public async Task<ActionResult<Product>> DeleteProduct(int id)
         {
             var product = await _context.Products.FindAsync(id);

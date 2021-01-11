@@ -3,16 +3,17 @@ import { Provider } from 'react-redux';
 import { store } from '../actions/store';
 import Page from '../components/Page';
 
-
-
-function MyApp({ Component, pageProps }) {
-    return (
-        <Provider store={store}>
-            <Page>
-                <Component {...pageProps} />
-            </Page>
-        </Provider>
-    );
+class MyApp extends App {
+    render() {
+        const { Component, pageProps } = this.props;
+        return (
+            <Provider store={store}>
+                <Page>
+                    <Component {...pageProps} />
+                </Page>
+            </Provider>
+        );
+    }
 }
 
 MyApp.getInitialProps = async function({ Component, ctx }) {

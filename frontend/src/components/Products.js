@@ -14,10 +14,9 @@ export const Products = ({ productList, fetchAllProducts }) => {
         const fn = async () => {
             await fetchAllProducts();
             setProducts(productList);
-            console.log('hehre')
         };
         fn();
-    }, []);
+    }, [fetchAllProducts]);
 
     //get current products on page
     const indexOfLastProduct = currentPage * productsPerPage;
@@ -25,7 +24,7 @@ export const Products = ({ productList, fetchAllProducts }) => {
     const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
 
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
-    console.log(products)
+   
     return (
         <>
             <Pagination

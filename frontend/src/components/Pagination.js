@@ -1,5 +1,16 @@
 import Link from 'next/link';
 import React from 'react';
+import styled from 'styled-components';
+
+const PaginationStyles = styled.div`
+    text-align: center;
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+    span {
+        margin-left: 1rem;
+    }
+    
+`;
 
 const Pagination = ({ productsPerPage, totalProducts, paginate }) => {
     const pageNumbers = [];
@@ -9,8 +20,7 @@ const Pagination = ({ productsPerPage, totalProducts, paginate }) => {
     }
 
     return (
-        <div>
-
+        <PaginationStyles>
             {pageNumbers.map(num => (
                 <Link
                     href='#'
@@ -23,7 +33,7 @@ const Pagination = ({ productsPerPage, totalProducts, paginate }) => {
                     </span>
                 </Link>
             ))}
-        </div>
+        </PaginationStyles>
     )
 };
 

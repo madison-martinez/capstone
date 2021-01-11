@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace FarmersSpecial.Migrations
@@ -28,10 +29,11 @@ namespace FarmersSpecial.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(type: "longtext", nullable: true),
-                    Email = table.Column<string>(type: "longtext", nullable: true),
-                    Document = table.Column<string>(type: "longtext", nullable: true),
-                    Phone = table.Column<string>(type: "longtext", nullable: true)
+                    FirstName = table.Column<string>(type: "longtext", nullable: true),
+                    LastName = table.Column<string>(type: "longtext", nullable: true),
+                    Username = table.Column<string>(type: "longtext", nullable: true),
+                    PasswordHash = table.Column<byte[]>(type: "longblob", nullable: true),
+                    PasswordSalt = table.Column<byte[]>(type: "longblob", nullable: true)
                 },
                 constraints: table =>
                 {
