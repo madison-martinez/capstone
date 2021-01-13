@@ -60,7 +60,7 @@ function register(user) {
         userService.register(user)
             .then(
                 user => {
-                    dispatch(success());
+                    dispatch(success(user));
                 },
                 error => {
                     dispatch(failure(error.toString()));

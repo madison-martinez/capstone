@@ -1,59 +1,75 @@
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import Form from './styles/FormStyles';
 import useForm from '../utils/useForm';
 import { userActions } from '../actions/user';
 
 
 function Signup() {
-  const { values, handleChange } = useForm({
+  const { values, handleChange, clearForm } = useForm({
     firstName: '',
     lastName: '',
-    // email: '',
     username: '',
     password: '',
   });
+
+  const [submitted, setSubmitted] = useState(false);
+  const { firstName, lastName, username, password } = values;
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(userActions.logout());
+  }, []);
 
   return (
     <Form
       method="post"
       onSubmit={async e => {
         e.preventDefault();
+        setSubmitted(true); 
+        if (firstName && lastName && username && password) {
+           const res = await dispatch(userActions.register(values));
+           console.log(res);
+        }
+        clearForm();
       }}
     >
       <fieldset>
         <h2>Sign Up for An Account</h2>
         
-        <label htmlFor="firstname">
+        <label htmlFor="firstName">
           First Name
           <input
             type="text"
-            name="firstname"
+            name="firstName"
             placeholder="First Name"
             value={values.firstName}
             onChange={handleChange}
+            required
           />
         </label>
-        <label htmlFor="lastname">
+        <label htmlFor="lastName">
           Last Name
           <input
             type="text"
-            name="lastname"
+            name="lastName"
             placeholder="Last Name"
             value={values.lastName}
             onChange={handleChange}
+            required
           />
         </label>
-        {/* <label htmlFor="email">
-          Email
+        <label htmlFor="username">
+          Username
           <input
-            type="email"
-            name="email"
-            placeholder="Email Address"
-            value={values.email}
+            type="text"
+            name="username"
+            placeholder="Username"
+            value={values.username}
             onChange={handleChange}
+            required
           />
-        </label> */}
+        </label>
         <label htmlFor="password">
           Password
           <input
@@ -62,6 +78,7 @@ function Signup() {
             placeholder="Password"
             value={values.password}
             onChange={handleChange}
+            required
           />
         </label>
 
@@ -69,6 +86,6 @@ function Signup() {
       </fieldset>
     </Form>
   );
-}
+};
 
 export default Signup;

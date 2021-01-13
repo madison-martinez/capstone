@@ -16,7 +16,8 @@ function Nav() {
     </Link>
     <Link href="/signup">
     <a>Signup</a>
-    </Link><Link href="/account">
+    </Link>
+    <Link href="/account">
     <a>Account</a>
     </Link>
 

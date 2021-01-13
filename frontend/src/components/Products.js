@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { connect } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
 import * as actions from '../actions/product';
 import Product from './Product';
 import Pagination from './Pagination';
@@ -9,14 +9,12 @@ export const Products = ({ productList, fetchAllProducts }) => {
     const [productsPerPage] = useState(6);
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(false);
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        const fn = async () => {
-            await fetchAllProducts();
-            setProducts(productList);
-        };
-        fn();
-    }, [fetchAllProducts]);
+      dispatch(fetchAllProducts);
+      setProducts(productList);
+    }, []);
 
     //get current products on page
     const indexOfLastProduct = currentPage * productsPerPage;

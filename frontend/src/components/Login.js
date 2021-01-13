@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import useForm from '../utils/useForm';
 import Form from './styles/FormStyles';
 import { userActions } from '../actions/user';
 
-function Signin() {
+function Login() {
     const { values, handleChange, clearForm } = useForm({
         username: '',
         password: '',
@@ -24,8 +24,7 @@ function Signin() {
                 e.preventDefault();
                 setSubmitted(true);
                 if (username && password) {
-                    const { from } = { pathname: "/" };
-                    dispatch(userActions.login(username, password, from));
+                    dispatch(userActions.login(values));
                 }
                 clearForm();
             }}
@@ -62,6 +61,6 @@ function Signin() {
             </fieldset>
         </Form>
     );
-}
+};
 
-export default Signin;
+export default Login;

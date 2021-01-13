@@ -91,7 +91,6 @@ function handleResponse(response) {
                 logout();
                 // window.location.origin(true);
             }
-
             const error = (data && data.message) || response.statusText;
             return Promise.reject(error);
         }
