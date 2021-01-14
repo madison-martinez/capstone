@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import styled from 'styled-components';
-import Nav from "./Nav";
+import Footer from './Footer';
+import Nav from './Nav';
 
 
 const Logo = styled.h1`
