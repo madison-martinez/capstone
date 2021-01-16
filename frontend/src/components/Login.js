@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { useRouter } from 'next/router';
 import useForm from '../utils/useForm';
 import Form from './styles/FormStyles';
 import { userActions } from '../actions/user';
 
-function Login() {
+
+function LoginPage() {
     const { values, handleChange, clearForm } = useForm({
         username: '',
         password: '',
@@ -12,19 +14,23 @@ function Login() {
     const [submitted, setSubmitted] = useState(false);
     const { username, password } = values;
     const dispatch = useDispatch();
+    const router = useRouter();
 
     useEffect(() => {
         dispatch(userActions.logout());
+        router.prefetch('/marketplace');
     }, []);
 
     return (
+        <>
         <Form
             method="post"
             onSubmit={async e => {
                 e.preventDefault();
                 setSubmitted(true);
                 if (username && password) {
-                    dispatch(userActions.login(values));
+                    dispatch(userActions.login(username, password));
+                    router.push('/marketplace');
                 }
                 clearForm();
             }}
@@ -60,7 +66,8 @@ function Login() {
                 <button type="submit">Sign In!</button>
             </fieldset>
         </Form>
+        </>
     );
 };
 
-export default Login;
+export default LoginPage;

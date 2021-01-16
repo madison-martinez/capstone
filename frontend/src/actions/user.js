@@ -29,6 +29,7 @@ export const userConstants = {
 };
 
 function login(username, password) {
+    console.log('here')
     return dispatch => {
         dispatch(request({ username }));
 
@@ -36,6 +37,7 @@ function login(username, password) {
             .then(
                 user => {
                     dispatch(success(user));
+                    
                 },
                 error => {
                     dispatch(failure(error.toString()));

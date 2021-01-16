@@ -7,6 +7,11 @@ border: 3px solid white ;
 padding: 20px;
 font-size: 1.5rem;
 line-height: 1.5;
+h2 {
+  font-family: 'Amatic SC', cursive;
+  font-size: 2.5rem;
+  text-align: center;
+}
 label {
   display: block;
   margin-bottom: 1rem;
@@ -30,7 +35,8 @@ input[type='submit'] {
   color: white;
   border: 0;
   font-size: 2rem;
-  padding: 0.5rem 1rem;
+  font-family: 'Josefin Slab', serif;
+  padding: .75rem 1rem;
   &:hover {
     background: ${props => props.theme.offWhite};
     color: ${props => props.theme.darkGreen}
