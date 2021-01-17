@@ -1,3 +1,4 @@
+import Router from 'next/router';
 import { authHeader } from '../utils/authHeader';
 
 const baseUrl = "https://localhost:5001";
@@ -24,6 +25,9 @@ function login(username, password) {
         .then(user => {
             // store user details and jwt token in local storage to keep user logged in between page refreshes
             localStorage.setItem('user', JSON.stringify(user));
+            Router.push({
+                pathname:`/`
+            })
             return user;
         });
 }
@@ -91,6 +95,7 @@ function handleResponse(response) {
                 // window.location.origin(true);
             }
             const error = (data && data.message) || response.statusText;
+            console.log(error);
             return Promise.reject(error);
         }
 

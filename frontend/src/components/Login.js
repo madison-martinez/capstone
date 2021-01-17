@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import useForm from '../utils/useForm';
 import Form from './styles/FormStyles';
@@ -15,6 +15,7 @@ function LoginPage() {
     const { username, password } = values;
     const dispatch = useDispatch();
     const router = useRouter();
+    const alert = useSelector(state => state.alert);
 
     useEffect(() => {
         dispatch(userActions.logout());
@@ -29,14 +30,16 @@ function LoginPage() {
                 e.preventDefault();
                 setSubmitted(true);
                 if (username && password) {
-                    dispatch(userActions.login(username, password));
-                    router.push('/marketplace');
+                   dispatch(userActions.login(username, password ));
                 }
                 clearForm();
             }}
         >
             <fieldset>
                 <h2>Login to your account</h2>
+                {alert.message && 
+                    <div>{alert.message}</div>
+                }
                 <label htmlFor="username">
                     Username
                 <input

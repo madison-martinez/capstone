@@ -1,10 +1,11 @@
 // import { USERS_API_URL } from '../utils/index';
 import Link from 'next/link';
 import NavStyles from './styles/NavStyles';
-import { UseUser } from './User';
+import { useUser } from './User';
 
 function Nav() {
-  const me = UseUser();
+  const me = useUser();
+
   return (
     <NavStyles>
       {me && (

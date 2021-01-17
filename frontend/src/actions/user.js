@@ -1,12 +1,5 @@
 import { userService } from '../services/user.service';
-
-export const userActions = {
-    login,
-    logout,
-    register,
-    getAll,
-    delete: _delete
-};
+import { alertActions } from './alert';
 
 export const userConstants = {
     REGISTER_REQUEST: 'USERS_REGISTER_REQUEST',
@@ -28,8 +21,8 @@ export const userConstants = {
     DELETE_FAILURE: 'USERS_DELETE_FAILURE'
 };
 
+
 function login(username, password) {
-    console.log('here')
     return dispatch => {
         dispatch(request({ username }));
 
@@ -37,22 +30,22 @@ function login(username, password) {
             .then(
                 user => {
                     dispatch(success(user));
-                    
                 },
                 error => {
                     dispatch(failure(error.toString()));
+                    dispatch(alertActions.error(error.toString()));
                 }
             );
     };
 
-    function request(user) { 
-        return { type: userConstants.LOGIN_REQUEST, user } 
+    function request(user) {
+        return { type: userConstants.LOGIN_REQUEST, user }
     };
-    function success(user) { 
-        return { type: userConstants.LOGIN_SUCCESS, user } 
+    function success(user) {
+        return { type: userConstants.LOGIN_SUCCESS, user }
     };
-    function failure(error) { 
-        return { type: userConstants.LOGIN_FAILURE, error } 
+    function failure(error) {
+        return { type: userConstants.LOGIN_FAILURE, error }
     };
 }
 
@@ -69,6 +62,7 @@ function register(user) {
             .then(
                 user => {
                     dispatch(success(user));
+
                 },
                 error => {
                     dispatch(failure(error.toString()));
@@ -77,14 +71,14 @@ function register(user) {
     };
 
     function request(user) {
-         return { type: userConstants.REGISTER_REQUEST, user } 
-        };
+        return { type: userConstants.REGISTER_REQUEST, user }
+    };
     function success(user) {
-         return { type: userConstants.REGISTER_SUCCESS, user } 
-        };
+        return { type: userConstants.REGISTER_SUCCESS, user }
+    };
     function failure(error) {
-         return { type: userConstants.REGISTER_FAILURE, error } 
-        };
+        return { type: userConstants.REGISTER_FAILURE, error }
+    };
 }
 
 function getAll() {
@@ -99,14 +93,14 @@ function getAll() {
     };
 
     function request() {
-         return { type: userConstants.GETALL_REQUEST } 
-        };
+        return { type: userConstants.GETALL_REQUEST }
+    };
     function success(users) {
-         return { type: userConstants.GETALL_SUCCESS, users } 
-        };
+        return { type: userConstants.GETALL_SUCCESS, users }
+    };
     function failure(error) {
-         return { type: userConstants.GETALL_FAILURE, error } 
-        };
+        return { type: userConstants.GETALL_FAILURE, error }
+    };
 }
 
 // prefixed function name with underscore because delete is a reserved word in javascript
@@ -122,12 +116,20 @@ function _delete(id) {
     };
 
     function request(id) {
-         return { type: userConstants.DELETE_REQUEST, id } 
-        };
+        return { type: userConstants.DELETE_REQUEST, id }
+    };
     function success(id) {
-         return { type: userConstants.DELETE_SUCCESS, id } 
-        };
+        return { type: userConstants.DELETE_SUCCESS, id }
+    };
     function failure(id, error) {
-         return { type: userConstants.DELETE_FAILURE, id, error } 
-        };
-}
+        return { type: userConstants.DELETE_FAILURE, id, error }
+    };
+};
+
+export const userActions = {
+    login,
+    logout,
+    register,
+    getAll,
+    delete: _delete
+};
