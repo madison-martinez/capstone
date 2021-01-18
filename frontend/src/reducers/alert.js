@@ -1,7 +1,6 @@
 import { alertActionTypes } from '../actions/alert';
 
 export function alert(state = {}, action) {
-    console.log(action.type)
     switch(action.type) {
         case alertActionTypes.SUCCESS:
             return {
@@ -13,6 +12,8 @@ export function alert(state = {}, action) {
                 type: 'alert-danger',
                 message: action.message
             }
+        case alertActionTypes.RESET: 
+            return {};
         default: 
             return state;
     }

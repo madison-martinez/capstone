@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 import Image from 'next/image';
 import Link from 'next/link';
+import Router from 'next/router'
+import { useUser } from './User';
+import { useEffect } from 'react';
+
 
 const GalleryStyles = styled.div`
     display: grid;
@@ -27,7 +31,15 @@ const GalleryStyles = styled.div`
     }
 `;
 
+
 function Home() {
+    const currentUser = useUser();
+    console.log(currentUser);
+
+    useEffect(() => {
+    
+    }, [])
+
     return (
         <GalleryStyles>
             <Image
@@ -39,29 +51,38 @@ function Home() {
             />
             <div className="text-center">
                 <h2>What We Do</h2>
-                    <p>
+                <p>
                     We are trying to be a link in a somewhat broken supply chain.
-                    We are looking to help the small providers get their products into the locals hands and bellies. 
+                    We are looking to help the small providers get their products into the locals hands and bellies.
                     </p>
                 <h2>Why We Do It</h2>
-                    <p>
+                <p>
                     While the food supply chain has been stressed for awhile, the COVID pandemic has really brought
                     to light the connection between farmers and consumers, especially small businesses.
                     Instead of having farmers dump milk or plow fields full of food, we hope to maybe find places for that food to go, while keeping the farmers fed too.
                     </p>
-                <h2>Where You Fit In</h2> 
-                    <p>
-                    The goal of this website is to allow local producers to list items they have for sale to local restaurants who may be looking to get a larger margin 
-                    on dishes during this difficult time. So, if you would like to see what is available to you, please sign up or login and we look forward to seeing 
+                <h2>Where You Fit In</h2>
+                <p>
+                    The goal of this website is to allow local producers to list items they have for sale to local restaurants who may be looking to get a larger margin
+                    on dishes during this difficult time. So, if you would like to see what is available to you, please sign up or login and we look forward to seeing
                     what you create.
                     </p>
                 <div className="buttons-section">
-                    <Link href="/signup">
-                        <a>Signup</a>
-                    </Link>
-                    <Link href="/login">
-                        <a>Login</a>
-                    </Link>
+                    {currentUser && (
+                        <Link href="/login">
+                            <a>Logout</a>
+                        </Link>
+                    )}
+                    {!currentUser && (
+                        <>
+                            <Link href="/signup">
+                                <a>Signup</a>
+                            </Link>
+                            <Link href="/login">
+                                <a>Login</a>
+                            </Link>
+                        </>
+                    )}
                 </div>
             </div>
             <Image

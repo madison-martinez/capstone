@@ -1,14 +1,24 @@
 // import { USERS_API_URL } from '../utils/index';
 import Link from 'next/link';
+import { useEffect } from 'react';
 import NavStyles from './styles/NavStyles';
 import { useUser } from './User';
 
 function Nav() {
-  const me = useUser();
+  const currentUser = useUser();
+
+
+  useEffect(() => {
+    if (currentUser !== null) {
+      console.log('IM NULL')
+    } else {
+      console.log('WHOS HERE')
+    }
+  }, [])
 
   return (
     <NavStyles>
-      {me && (
+      {currentUser && (
         <>
           <Link href="/marketplace">
             <a>Marketplace</a>
@@ -19,17 +29,24 @@ function Nav() {
           <Link href="/orders">
             <a>Orders</a>
           </Link>
+          <Link href="/account">
+            <a>Account</a>
+          </Link>
+          <Link href="/login">
+            <a>Logout</a>
+          </Link>
         </>
       )
       }
-      {!me && (
+      {!currentUser && (
         <>
           <Link href="/signup">
             <a>Signup</a>
           </Link>
-          <Link href="/account">
-            <a>Account</a>
+          <Link href="/login">
+            <a>Login</a>
           </Link>
+
         </>
       )}
     </NavStyles>

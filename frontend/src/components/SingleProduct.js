@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
+import Image from 'next/image';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import * as actions from '../actions/product';
@@ -28,6 +29,14 @@ const SingleProduct = ({ id, productList, singleProduct }) => {
     //add in loading 
     return (
         <>
+        {values.image && 
+          <Image 
+            src={values.image} 
+            alt={values.title} 
+            width={500}
+            height={600}
+            responsive
+          />}
             <Head>
                 <title>
                     Farmer's Special - {values.title}

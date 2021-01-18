@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect} from 'react';
 import styled, { ThemeProvider, createGlobalStyle } from 'styled-components';
 import Footer from './Footer';
 import Header from './Header';
@@ -49,6 +49,7 @@ const GlobalStyles = createGlobalStyle`
 `;
 
 export default class Page extends Component {
+
     render() {
         return (
             <ThemeProvider theme={theme}>

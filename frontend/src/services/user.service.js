@@ -25,11 +25,9 @@ function login(username, password) {
         .then(user => {
             // store user details and jwt token in local storage to keep user logged in between page refreshes
             localStorage.setItem('user', JSON.stringify(user));
-            Router.push({
-                pathname:`/`
-            })
+            Router.reload();
             return user;
-        });
+        })
 }
 
 function logout() {
@@ -95,7 +93,6 @@ function handleResponse(response) {
                 // window.location.origin(true);
             }
             const error = (data && data.message) || response.statusText;
-            console.log(error);
             return Promise.reject(error);
         }
 

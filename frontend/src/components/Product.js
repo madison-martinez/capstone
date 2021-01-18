@@ -5,13 +5,15 @@ import DeleteButton from './DeleteButton';
 import ProductStyles from './styles/ProductStyles';
 import formatMoney from '../utils/formatMoney';
 
-
 const ProductsList = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
   margin: 0 auto;
   max-width: ${props => props.theme.maxWidth};
+  a {
+    text-align: center;
+  }
 `;
 
 const DetailsStyles = styled.div`
@@ -22,10 +24,10 @@ const DetailsStyles = styled.div`
 `;
 
 export default function Product({ products, loading }) {
-  if(loading) {
+  if (loading) {
     return <p>Loading...</p>
   }
-  
+
   let items = [];
   for (let i = 0; i < products.length; i++) {
     items.push(
@@ -40,10 +42,10 @@ export default function Product({ products, loading }) {
           </Link>
         </h3>
         <DetailsStyles>
-        <p>{products[i].description}</p>
-        <p>{formatMoney(products[i].price)}</p>
+          <p>{products[i].description}</p>
+          <p>{formatMoney(products[i].price)}</p>
         </DetailsStyles>
-       
+
         <div className="button-list">
 
           {/* TODO: if user is restaurant user, show add to cart button here instead of edit and delete */}
@@ -63,7 +65,7 @@ export default function Product({ products, loading }) {
   }
   return (
     <ProductsList>
-     {items}
+      {items}
     </ProductsList>
   )
 };

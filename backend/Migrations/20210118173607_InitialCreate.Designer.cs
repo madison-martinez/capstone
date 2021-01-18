@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FarmersSpecial.Migrations
 {
     [DbContext(typeof(FarmersSpecialContext))]
-    [Migration("20210111004234_InitialCreate")]
+    [Migration("20210118173607_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -52,6 +52,9 @@ namespace FarmersSpecial.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Image")
                         .HasColumnType("longtext");
 
                     b.Property<decimal>("Price")

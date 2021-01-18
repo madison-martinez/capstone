@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useRouter } from 'next/router';
 import useForm from '../utils/useForm';
 import Form from './styles/FormStyles';
 import { userActions } from '../actions/user';
+import { alertActions } from '../actions/alert';
 
 
 function LoginPage() {
@@ -14,12 +14,11 @@ function LoginPage() {
     const [submitted, setSubmitted] = useState(false);
     const { username, password } = values;
     const dispatch = useDispatch();
-    const router = useRouter();
     const alert = useSelector(state => state.alert);
 
     useEffect(() => {
         dispatch(userActions.logout());
-        router.prefetch('/marketplace');
+        dispatch(alertActions.reset());
     }, []);
 
     return (

@@ -6,10 +6,11 @@ import useForm from '../utils/useForm';
 
 const CreateProduct = (props) => {
 
-    const { values, handleChange, setInitialForm } = useForm({
+    const { values, handleChange, setInitialForm, setValues } = useForm({
         title: '',
         description: '', 
-        price: 0
+        price: 0,
+        image: ''
     });
 
     const onSuccess = () => setInitialForm();
@@ -17,27 +18,44 @@ const CreateProduct = (props) => {
     const handleSubmit = e => {
         e.preventDefault();
         props.createProduct(values, () => {window.alert('created a new product')})
+        //TODO Push to the item page that was just created
         onSuccess();
+    };
+
+     const handleImageUpload = async e => {
+        const files = e.target.files;
+        const data = new FormData();
+        data.append('file', files[0]);
+        data.append('upload_preset', 'farmersspecial');
+        
+        const res = await fetch(
+            'https://api.cloudinary.com/v1_1/dzqeffkmp/image/upload', 
+            {
+                method: 'POST',
+                body: data
+            });
+        const file = await res.json();
+        console.log(file)
+        setValues({image: file.secure_url});
     }
 
     return (
         <>
         <Form
             data-testid="form"
-            onSubmit={handleSubmit}                                //TODO POST INFO TO API AND DB
+            onSubmit={handleSubmit}
         >
             <fieldset>
-                {/* <label htmlFor="file">
+                <label htmlFor="file">
                     Image
                     <input
                         type="file"
                         id="file"
                         name="image"
                         placeholder="Upload an image"
-                        required
-                        onChange={handleChange}
+                        onChange={handleImageUpload}
                     />
-                </label> */}
+                </label>
                 <label htmlFor="title">
                     Title
                     <input

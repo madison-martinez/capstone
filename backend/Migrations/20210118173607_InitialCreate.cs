@@ -16,7 +16,8 @@ namespace FarmersSpecial.Migrations
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Title = table.Column<string>(type: "longtext", nullable: true),
                     Description = table.Column<string>(type: "longtext", nullable: true),
-                    Price = table.Column<decimal>(type: "decimal(65,30)", nullable: false)
+                    Price = table.Column<decimal>(type: "decimal(65,30)", nullable: false),
+                    Image = table.Column<string>(type: "longtext", nullable: true)
                 },
                 constraints: table =>
                 {
