@@ -12,7 +12,7 @@ const SingleProductStyles = styled.div`
     grid-flow-auto: columns;
     min-height: 500px;
     max-width: ${props => props.theme.maxWidth};
-    margin: 2rem auto;
+    margin: 0 auto;
     .details {
         font-size: 2rem;
     }
@@ -25,6 +25,8 @@ const SingleProduct = ({ id, productList, singleProduct }) => {
         singleProduct(id);
         setValues({ ...productList.find(item => item.id === parseInt(id)) })
     }, [id]);
+    console.log(id);
+    console.log(values.id)
     //add in error 
     //add in loading 
     return (
@@ -49,6 +51,7 @@ const SingleProduct = ({ id, productList, singleProduct }) => {
                     <p>{formatMoney(values.price)}</p>
                 </div>
             </SingleProductStyles>
+        
         </>
     )
 };

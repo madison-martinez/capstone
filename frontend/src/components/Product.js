@@ -1,9 +1,13 @@
 import React from 'react';
 import Link from 'next/link';
+import { connect } from 'react-redux';
 import styled from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 import DeleteButton from './DeleteButton';
 import ProductStyles from './styles/ProductStyles';
 import formatMoney from '../utils/formatMoney';
+import { addToCart, getCartCount } from '../actions/cart';
 
 const ProductsList = styled.div`
   display: grid;
@@ -14,6 +18,11 @@ const ProductsList = styled.div`
   a {
     text-align: center;
   }
+  .button-list {
+    display: grid;
+    grid-template-columns: repeat(3fr, 1fr);
+    
+  }
 `;
 
 const DetailsStyles = styled.div`
@@ -23,10 +32,8 @@ const DetailsStyles = styled.div`
 
 `;
 
-export default function Product({ products, loading }) {
-  if (loading) {
-    return <p>Loading...</p>
-  }
+function Product({ products, loading, addToCart, getCartCount, cartProps }) {
+ console.log(cartProps)
 
   let items = [];
   for (let i = 0; i < products.length; i++) {
@@ -56,9 +63,13 @@ export default function Product({ products, loading }) {
               query: { id: products[i].id },
             }}
           >
-            <a>Edit Product</a>
+            <a>Edit</a>
           </Link>
           <DeleteButton id={products[i].id} />
+          <button type="button" id={products[i].id} onClick={addToCart}>
+           <FontAwesomeIcon icon={faShoppingCart} />
+          </button>
+
         </div>
       </ProductStyles>
     )
@@ -69,3 +80,9 @@ export default function Product({ products, loading }) {
     </ProductsList>
   )
 };
+
+const mapStateToProps = state => ({
+  cartProps: state.cart
+});
+
+export default connect(mapStateToProps, { addToCart, getCartCount })(Product);

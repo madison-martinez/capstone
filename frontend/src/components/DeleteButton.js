@@ -11,7 +11,7 @@ export const DeleteButton = ({ id, deleteProduct}) => {
             deleteProduct(id)
             }
         }}
-      > Delete This Item
+      > Delete
       </button>
     )
   }
