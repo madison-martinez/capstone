@@ -16,12 +16,16 @@ const ProductsList = styled.div`
   margin: 0 auto;
   max-width: ${props => props.theme.maxWidth};
   a {
-    text-align: center;
-  }
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    }
   .button-list {
     display: grid;
-    grid-template-columns: repeat(3fr, 1fr);
-    
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    .shopping-cart-icon {
+      grid-column-start: 4
+    }
   }
 `;
 
@@ -33,7 +37,7 @@ const DetailsStyles = styled.div`
 `;
 
 function Product({ products, loading, addToCart, getCartCount, cartProps }) {
- console.log(cartProps)
+  console.log(cartProps)
 
   let items = [];
   for (let i = 0; i < products.length; i++) {
@@ -66,8 +70,18 @@ function Product({ products, loading, addToCart, getCartCount, cartProps }) {
             <a>Edit</a>
           </Link>
           <DeleteButton id={products[i].id} />
-          <button type="button" id={products[i].id} onClick={addToCart}>
-           <FontAwesomeIcon icon={faShoppingCart} />
+          <button 
+          className="shopping-cart-icon"
+          type="button" 
+          id={products[i].id} 
+          onClick={() => addToCart({
+            product: products[i].title,
+            id:  products[i].id,
+            price: products[i].price,
+            description: products[i].description,
+            quantity: 0
+            })}>
+            <FontAwesomeIcon icon={faShoppingCart} />
           </button>
 
         </div>

@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import Image from 'next/image';
 import Link from 'next/link';
-import Router from 'next/router'
 import { useUser } from './User';
 import { useEffect } from 'react';
 
@@ -37,7 +36,7 @@ function Home() {
     console.log(currentUser);
 
     useEffect(() => {
-        
+
     }, [])
 
     return (

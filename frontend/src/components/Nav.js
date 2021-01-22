@@ -8,7 +8,7 @@ function Nav() {
   const currentUser = useUser();
 
   useEffect(() => {
- 
+
   }, []);
 
   return (

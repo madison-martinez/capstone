@@ -8,7 +8,7 @@ import { alertActions } from '../actions/alert';
 
 
 function LoginPage() {
-    const { values, handleChange, clearForm } = useForm({
+    const { values, handleChange } = useForm({
         username: '',
         password: '',
     });
@@ -24,26 +24,25 @@ function LoginPage() {
     }, []);
 
     return (
-        <>
         <Form
             method="post"
             onSubmit={async e => {
                 e.preventDefault();
                 setSubmitted(true);
                 if (username && password) {
-                   dispatch(userActions.login(username, password ));
+                    dispatch(userActions.login(username, password));
                 }
                 router.push('/');
             }}
         >
             <fieldset>
                 <h2>Login to your account</h2>
-                {alert.message && 
+                {alert.message &&
                     <div>{alert.message}</div>
                 }
                 <label htmlFor="username">
                     Username
-                <input
+                    <input
                         type="username"
                         name="username"
                         placeholder="Username"
@@ -56,7 +55,7 @@ function LoginPage() {
                 </label>
                 <label htmlFor="password">
                     Password
-                 <input
+                    <input
                         type="password"
                         name="password"
                         placeholder="Password"
@@ -70,7 +69,6 @@ function LoginPage() {
                 <button type="submit">Sign In!</button>
             </fieldset>
         </Form>
-        </>
     );
 };
 

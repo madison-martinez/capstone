@@ -7,11 +7,11 @@ import Pagination from './Pagination';
 export const Products = ({ productList, fetchAllProducts }) => {
     const [currentPage, setCurrentPage] = useState(1);
     const [productsPerPage] = useState(6);
-    const [loading, setLoading] = useState(false);
+    const [loading] = useState(false);
     const dispatch = useDispatch();
 
     useEffect(() => {
-      dispatch(fetchAllProducts);
+        dispatch(fetchAllProducts);
     }, []);
 
     //get current products on page
@@ -20,7 +20,7 @@ export const Products = ({ productList, fetchAllProducts }) => {
     const currentProducts = productList.slice(indexOfFirstProduct, indexOfLastProduct);
 
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
-   
+
     return (
         <>
             <Pagination

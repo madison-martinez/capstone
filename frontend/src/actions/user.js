@@ -43,12 +43,12 @@ function login(username, password) {
     function failure(error) {
         return { type: userConstants.LOGIN_FAILURE, error }
     };
-}
+};
 
 function logout() {
     userService.logout();
     return { type: userConstants.LOGOUT };
-}
+};
 
 function register(user) {
     return dispatch => {
@@ -75,7 +75,7 @@ function register(user) {
     function failure(error) {
         return { type: userConstants.REGISTER_FAILURE, error }
     };
-}
+};
 
 function getAll() {
     return dispatch => {
@@ -97,7 +97,7 @@ function getAll() {
     function failure(error) {
         return { type: userConstants.GETALL_FAILURE, error }
     };
-}
+};
 
 export const userActions = {
     login,

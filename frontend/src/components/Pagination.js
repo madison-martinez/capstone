@@ -26,10 +26,10 @@ const Pagination = ({ productsPerPage, totalProducts, paginate }) => {
                     href='#'
                     key={num}
                 >
-                    <span> 
+                    <span>
                         <a onClick={() => paginate(num)} href="#">
-                        {num}
-                        </a> 
+                            {num}
+                        </a>
                     </span>
                 </Link>
             ))}

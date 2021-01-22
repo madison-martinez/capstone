@@ -3,11 +3,13 @@ export const CartActionTypes = {
     GET_CART_COUNT: 'GET_CART_COUNT'
 };
 
-export const addToCart = () => {
+export const addToCart = ({product, id, price, description, quantity }) => {
+    const cartProduct = {product, id, price, description, quantity};
+    console.log(cartProduct)
     return (dispatch) => {
-        console.log('adddingggg')
         dispatch({
-            type: CartActionTypes.ADD_TO_CART
+            type: CartActionTypes.ADD_TO_CART,
+            payload: cartProduct
         })
     }
 };
@@ -19,4 +21,4 @@ export const getCartCount = () => {
             type: CartActionTypes.GET_CART_COUNT
         })
     }
-}
+};

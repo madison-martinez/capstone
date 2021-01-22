@@ -22,11 +22,11 @@ function reset() {
     return {
         type: alertActionTypes.RESET
     }
-}
+};
 
 
 export const alertActions = {
-    success, 
+    success,
     error,
     reset
 };
