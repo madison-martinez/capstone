@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useRouter } from 'next/router'
 import useForm from '../utils/useForm';
 import Form from './styles/FormStyles';
 import { userActions } from '../actions/user';
@@ -15,6 +16,7 @@ function LoginPage() {
     const { username, password } = values;
     const dispatch = useDispatch();
     const alert = useSelector(state => state.alert);
+    const router = useRouter();
 
     useEffect(() => {
         dispatch(userActions.logout());
@@ -31,7 +33,7 @@ function LoginPage() {
                 if (username && password) {
                    dispatch(userActions.login(username, password ));
                 }
-                clearForm();
+                router.push('/');
             }}
         >
             <fieldset>

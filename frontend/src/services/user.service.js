@@ -1,4 +1,4 @@
-import Router from 'next/router';
+import { Redirect } from 'react-router-dom';
 import { authHeader } from '../utils/authHeader';
 
 const baseUrl = "https://localhost:5001";
@@ -9,8 +9,7 @@ export const userService = {
     register,
     getAll,
     getById,
-    update,
-    delete: _delete,
+    update
 };
 
 function login(username, password) {
@@ -25,7 +24,6 @@ function login(username, password) {
         .then(user => {
             // store user details and jwt token in local storage to keep user logged in between page refreshes
             localStorage.setItem('user', JSON.stringify(user));
-            Router.reload();
             return user;
         })
 }
@@ -73,15 +71,6 @@ function update(user) {
     return fetch(`${baseUrl}/users/${user.id}`, requestOptions).then(handleResponse);;
 }
 
-// prefixed function name with underscore because delete is a reserved word in javascript
-function _delete(id) {
-    const requestOptions = {
-        method: 'DELETE',
-        headers: authHeader()
-    };
-
-    return fetch(`${baseUrl}/users/${id}`, requestOptions).then(handleResponse);
-}
 
 function handleResponse(response) {
     return response.text().then(text => {
@@ -90,7 +79,6 @@ function handleResponse(response) {
             if (response.status === 401) {
                 // auto logout if 401 response returned from api
                 logout();
-                // window.location.origin(true);
             }
             const error = (data && data.message) || response.statusText;
             return Promise.reject(error);

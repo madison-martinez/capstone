@@ -7,14 +7,9 @@ import { useUser } from './User';
 function Nav() {
   const currentUser = useUser();
 
-
   useEffect(() => {
-    if (currentUser !== null) {
-      console.log('IM NULL')
-    } else {
-      console.log('WHOS HERE')
-    }
-  }, [])
+ 
+  }, []);
 
   return (
     <NavStyles>

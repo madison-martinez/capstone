@@ -3,12 +3,14 @@ import product from './product';
 import { registration } from './registration';
 import { alert } from './alert';
 import { cart } from './cart';
+import { authentication } from './authentication';
 
 export const reducers = combineReducers({
     product,
     alert,
     registration,
-    cart
+    cart,
+    authentication
 });
 
 export default reducers;

@@ -15,10 +15,6 @@ export const userConstants = {
     GETALL_REQUEST: 'USERS_GETALL_REQUEST',
     GETALL_SUCCESS: 'USERS_GETALL_SUCCESS',
     GETALL_FAILURE: 'USERS_GETALL_FAILURE',
-
-    DELETE_REQUEST: 'USERS_DELETE_REQUEST',
-    DELETE_SUCCESS: 'USERS_DELETE_SUCCESS',
-    DELETE_FAILURE: 'USERS_DELETE_FAILURE'
 };
 
 
@@ -103,33 +99,9 @@ function getAll() {
     };
 }
 
-// prefixed function name with underscore because delete is a reserved word in javascript
-function _delete(id) {
-    return dispatch => {
-        dispatch(request(id));
-
-        userService.delete(id)
-            .then(
-                user => dispatch(success(id)),
-                error => dispatch(failure(id, error.toString()))
-            );
-    };
-
-    function request(id) {
-        return { type: userConstants.DELETE_REQUEST, id }
-    };
-    function success(id) {
-        return { type: userConstants.DELETE_SUCCESS, id }
-    };
-    function failure(id, error) {
-        return { type: userConstants.DELETE_FAILURE, id, error }
-    };
-};
-
 export const userActions = {
     login,
     logout,
     register,
-    getAll,
-    delete: _delete
+    getAll
 };

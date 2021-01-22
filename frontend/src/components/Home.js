@@ -37,7 +37,7 @@ function Home() {
     console.log(currentUser);
 
     useEffect(() => {
-    
+        
     }, [])
 
     return (
