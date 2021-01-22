@@ -1,19 +1,23 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-function Cart({cartProps}) {
-    console.log(cartProps)
+function Cart({ cartCount, totalPrice, cartProducts }) {
+    console.log(cartCount);
+    console.log(cartProducts);
+
     return (
         <div>
-            <h1>
-
-            </h1>
+           {!cartProducts.length && (
+               <h1>Your cart looks pretty empty.</h1>
+           )}
         </div>
     )
 };
 
 const mapStateToProps = state => ({
-    cartProps: state.cart
-})
+    cartCount: state.cart.cartCount,
+    totalPrice: state.cart.totalPrice,
+    cartProducts: state.cart.cartProducts
+});
 
 export default connect(mapStateToProps)(Cart)

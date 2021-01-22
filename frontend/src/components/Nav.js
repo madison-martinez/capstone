@@ -1,19 +1,13 @@
-// import { USERS_API_URL } from '../utils/index';
 import Link from 'next/link';
-import { useEffect } from 'react';
 import NavStyles from './styles/NavStyles';
-import { useUser } from './User';
+import { connect } from 'react-redux';
 
-function Nav() {
-  const currentUser = useUser();
-
-  useEffect(() => {
-
-  }, []);
-
+function Nav({authUser}) {
+  
+  console.log(authUser)
   return (
     <NavStyles>
-      {currentUser && (
+      {authUser && (
         <>
           <Link href="/marketplace">
             <a>Marketplace</a>
@@ -24,8 +18,8 @@ function Nav() {
           <Link href="/orders">
             <a>Orders</a>
           </Link>
-          <Link href="/account">
-            <a>Account</a>
+          <Link href="/cart">
+            <a>Cart</a>
           </Link>
           <Link href="/login">
             <a>Logout</a>
@@ -33,7 +27,7 @@ function Nav() {
         </>
       )
       }
-      {!currentUser && (
+      {!authUser && (
         <>
           <Link href="/signup">
             <a>Signup</a>
@@ -41,12 +35,15 @@ function Nav() {
           <Link href="/login">
             <a>Login</a>
           </Link>
-
         </>
       )}
     </NavStyles>
   )
 };
 
-export default Nav;
+const mapStateToProps = state => ({
+  authUser: state.authentication.user
+})
+
+export default connect(mapStateToProps)(Nav);
 

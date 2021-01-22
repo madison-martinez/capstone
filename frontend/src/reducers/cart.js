@@ -9,12 +9,9 @@ const initialState = {
 export function cart(state = initialState, action) {
     switch (action.type) {
         case CartActionTypes.ADD_TO_CART:
-            let productCopy = { ...state.cartProducts[action.payload]};
-            // productCopy.quantity += 1;
-            console.log(productCopy)
             return {
                 ...state,
-                cartCount: state.cartCount + 1, 
+                cartCount: (state.cartCount + 1), 
                 totalPrice: parseInt(state.totalPrice + action.payload.price),
                 cartProducts: [...state.cartProducts, action.payload]
             }

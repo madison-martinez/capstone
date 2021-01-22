@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useUser } from './User';
-import { useEffect } from 'react';
+import { connect } from 'react-redux';
 
 
 const GalleryStyles = styled.div`
@@ -23,6 +22,7 @@ const GalleryStyles = styled.div`
                 color: ${props => props.theme.offWhite};
             }
         }
+
     }
     @media (max-width: 700px) {
         display: grid;
@@ -31,14 +31,7 @@ const GalleryStyles = styled.div`
 `;
 
 
-function Home() {
-    const currentUser = useUser();
-    console.log(currentUser);
-
-    useEffect(() => {
-
-    }, [])
-
+function Home({authUser}) {
     return (
         <GalleryStyles>
             <Image
@@ -67,12 +60,12 @@ function Home() {
                     what you create.
                     </p>
                 <div className="buttons-section">
-                    {currentUser && (
-                        <Link href="/login">
+                    {authUser && (
+                        <Link className ="center" href="/login">
                             <a>Logout</a>
                         </Link>
                     )}
-                    {!currentUser && (
+                    {!authUser && (
                         <>
                             <Link href="/signup">
                                 <a>Signup</a>
@@ -95,4 +88,10 @@ function Home() {
     )
 };
 
-export default Home;
+const mapStateToProps = state => ({
+    authUser: state.authentication.user
+});
+  
+export default connect(mapStateToProps)(Home);
+
+
