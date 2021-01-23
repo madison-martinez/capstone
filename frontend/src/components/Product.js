@@ -78,10 +78,11 @@ function Product({ products, loading, addToCart, getCartCount, cartProps }) {
             id={products[i].id}
             onClick={() => addToCart({
               product: products[i].title,
-              id: products[i].id,
+              id: [i],
               price: products[i].price,
               description: products[i].description,
-              quantity: 0
+              quantity: 0,
+              image: products[i].image
             })}>
             <FontAwesomeIcon icon={faShoppingCart} />
           </button>

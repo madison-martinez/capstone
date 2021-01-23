@@ -1,16 +1,20 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import CartStyles from '../components/styles/CartStyles'
+import formatMoney from '../utils/formatMoney';
+import CartProduct from './CartProduct';
 
-function Cart({ cartCount, totalPrice, cartProducts }) {
-    console.log(cartCount);
-    console.log(cartProducts);
+
+function Cart({ cartProducts, totalPrice}) {
 
     return (
-        <div>
+        <>
            {!cartProducts.length && (
                <h1>Your cart looks pretty empty.</h1>
            )}
-        </div>
+           <CartProduct />
+           <h2>Your total is: {formatMoney(totalPrice)}</h2>
+        </>
     )
 };
 

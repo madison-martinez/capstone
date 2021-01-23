@@ -12,14 +12,22 @@ export function cart(state = initialState, action) {
             return {
                 ...state,
                 cartCount: (state.cartCount + 1), 
-                totalPrice: parseInt(state.totalPrice + action.payload.price),
+                totalPrice: state.totalPrice + action.payload.price,
                 cartProducts: [...state.cartProducts, action.payload]
             }
         case CartActionTypes.GET_CART_COUNT:
             return {
                 ...state
             }
-
+        case CartActionTypes.DELETE_CART_PRODUCT:
+            return {
+                ...state,
+                cartCount: (state.cartCount - 1),
+                totalPrice: (state.totalPrice - action.payload.price),
+                cartProducts: state.cartProducts.filter(item => 
+                    item.id !== action.payload.id 
+                )
+            }
         default:
             return state;
     }

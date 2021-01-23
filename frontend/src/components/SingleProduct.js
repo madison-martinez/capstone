@@ -25,8 +25,6 @@ const SingleProduct = ({ id, productList, singleProduct }) => {
         singleProduct(id);
         setValues({ ...productList.find(item => item.id === parseInt(id)) })
     }, [id]);
-    console.log(id);
-    console.log(values.id)
     //add in error 
     //add in loading 
     return (
