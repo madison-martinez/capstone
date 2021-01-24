@@ -53,5 +53,5 @@ fieldset {
   }
 }
 `;
-    
+
 export default Form;

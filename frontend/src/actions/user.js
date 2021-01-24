@@ -10,11 +10,7 @@ export const userConstants = {
     LOGIN_SUCCESS: 'USERS_LOGIN_SUCCESS',
     LOGIN_FAILURE: 'USERS_LOGIN_FAILURE',
 
-    LOGOUT: 'USERS_LOGOUT',
-
-    GETALL_REQUEST: 'USERS_GETALL_REQUEST',
-    GETALL_SUCCESS: 'USERS_GETALL_SUCCESS',
-    GETALL_FAILURE: 'USERS_GETALL_FAILURE',
+    LOGOUT: 'USERS_LOGOUT'
 };
 
 
@@ -77,31 +73,8 @@ function register(user) {
     };
 };
 
-function getAll() {
-    return dispatch => {
-        dispatch(request());
-
-        userService.getAll()
-            .then(
-                users => dispatch(success(users)),
-                error => dispatch(failure(error.toString()))
-            );
-    };
-
-    function request() {
-        return { type: userConstants.GETALL_REQUEST }
-    };
-    function success(users) {
-        return { type: userConstants.GETALL_SUCCESS, users }
-    };
-    function failure(error) {
-        return { type: userConstants.GETALL_FAILURE, error }
-    };
-};
-
 export const userActions = {
     login,
     logout,
-    register,
-    getAll
+    register
 };

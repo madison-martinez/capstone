@@ -1,22 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import styled from 'styled-components';
 import Image from 'next/image';
 import Form from './styles/FormStyles';
 import * as actions from '../actions/product';
 import useForm from '../utils/useForm';
 
-const ImageStyles = styled.div`
-    display: grid:
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-`;
 
 const CreateProduct = (props) => {
 
     const { values, handleChange, setInitialForm, setValues } = useForm({
         title: '',
-        description: '', 
+        description: '',
         price: 0,
         image: ''
     });
@@ -25,26 +19,26 @@ const CreateProduct = (props) => {
 
     const handleSubmit = e => {
         e.preventDefault();
-        props.createProduct(values, () => {window.alert('created a new product')})
+        props.createProduct(values, () => { window.alert('created a new product') })
         //TODO Push to the item page that was just created
         onSuccess();
     };
 
-     const handleImageUpload = async e => {
+    const handleImageUpload = async e => {
         const files = e.target.files;
         const data = new FormData();
         data.append('file', files[0]);
         data.append('upload_preset', 'farmersspecial');
-        
+
         const res = await fetch(
-            'https://api.cloudinary.com/v1_1/dzqeffkmp/image/upload', 
+            'https://api.cloudinary.com/v1_1/dzqeffkmp/image/upload',
             {
                 method: 'POST',
                 body: data
             });
         const file = await res.json();
         console.log(file)
-        setValues({image: file.secure_url});
+        setValues({ image: file.secure_url });
     }
 
     return (
@@ -115,7 +109,7 @@ const CreateProduct = (props) => {
 
 const mapStateToProps = state => ({ productList: state.product.list });
 
-const mapActionsToProps = { 
+const mapActionsToProps = {
     createProduct: actions.create,
 };
 

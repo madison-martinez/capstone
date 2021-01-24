@@ -7,7 +7,7 @@ import { userActions } from '../actions/user';
 
 
 function Signup() {
-  const { values, handleChange, clearForm } = useForm({
+  const { values, handleChange } = useForm({
     firstName: '',
     lastName: '',
     username: '',
@@ -32,7 +32,6 @@ function Signup() {
           const res = await dispatch(userActions.register(values));
           console.log(res);
         }
-        clearForm();
       }}
     >
       <fieldset>

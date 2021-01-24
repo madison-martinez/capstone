@@ -31,7 +31,7 @@ const GalleryStyles = styled.div`
 `;
 
 
-function Home({authUser}) {
+function Home({ authUser }) {
     return (
         <GalleryStyles>
             <Image
@@ -61,7 +61,7 @@ function Home({authUser}) {
                     </p>
                 <div className="buttons-section">
                     {authUser && (
-                        <Link className ="center" href="/login">
+                        <Link className="center" href="/login">
                             <a>Logout</a>
                         </Link>
                     )}
@@ -91,7 +91,7 @@ function Home({authUser}) {
 const mapStateToProps = state => ({
     authUser: state.authentication.user
 });
-  
+
 export default connect(mapStateToProps)(Home);
 
 

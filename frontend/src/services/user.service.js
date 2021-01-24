@@ -1,5 +1,5 @@
-import { Redirect } from 'react-router-dom';
 import { authHeader } from '../utils/authHeader';
+
 
 const baseUrl = "https://localhost:5001";
 
@@ -7,9 +7,7 @@ export const userService = {
     login,
     logout,
     register,
-    getAll,
-    getById,
-    update
+    getById
 };
 
 function login(username, password) {
@@ -33,15 +31,6 @@ function logout() {
     localStorage.removeItem('user');
 }
 
-function getAll() {
-    const requestOptions = {
-        method: 'GET',
-        headers: authHeader()
-    };
-
-    return fetch(`${baseUrl}/users`, requestOptions).then(handleResponse);
-}
-
 function getById(id) {
     const requestOptions = {
         method: 'GET',
@@ -58,19 +47,14 @@ function register(user) {
         body: JSON.stringify(user)
     };
 
-    return fetch(`${baseUrl}/users/register`, requestOptions).then(handleResponse);
+    return fetch(`${baseUrl}/users/register`, requestOptions)
+        .then(handleResponse)
+        .then(user => {
+            // store user details and jwt token in local storage to keep user logged in between page refreshes
+            localStorage.setItem('user', JSON.stringify(user));
+            return user;
+        });
 }
-
-function update(user) {
-    const requestOptions = {
-        method: 'PUT',
-        headers: { ...authHeader(), 'Content-Type': 'application/json' },
-        body: JSON.stringify(user)
-    };
-
-    return fetch(`${baseUrl}/users/${user.id}`, requestOptions).then(handleResponse);;
-}
-
 
 function handleResponse(response) {
     return response.text().then(text => {
@@ -82,6 +66,9 @@ function handleResponse(response) {
             }
             const error = (data && data.message) || response.statusText;
             return Promise.reject(error);
+        }
+        if (response.ok) {
+            window.location.pathname = '/'
         }
 
         return data;
