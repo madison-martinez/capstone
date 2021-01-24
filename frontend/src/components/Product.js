@@ -36,7 +36,6 @@ const DetailsStyles = styled.div`
   margin: 0 auto;
   text-align: center;
   font-size: 1.2rem;
-
 `;
 
 function Product({ products, loading, addToCart, getCartCount, cartProps }) {

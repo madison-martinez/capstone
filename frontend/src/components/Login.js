@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router'
+import Image from 'next/image';
 import useForm from '../utils/useForm';
 import Form from './styles/FormStyles';
 import { userActions } from '../actions/user';
@@ -68,6 +69,15 @@ function LoginPage() {
                 </label>
                 <button type="submit">Sign In!</button>
             </fieldset>
+
+            <Image
+                src="/assets/photo-1464226184884-fa280b87c399.jpeg"
+                alt="fieldrows"
+                layout="responsive"
+                width={200}
+                height={200}
+            />
+
         </Form>
     );
 };

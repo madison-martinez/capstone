@@ -20,9 +20,9 @@ const CartList = styled.div`
       padding: .5rem 1rem;
       border: none;
       :hover {
-        background: ${props => props.theme.lightGray};
-        color: ${props => props.theme.darkBlue};
         cursor: pointer;
+        background-color: ${props => props.theme.offWhite};
+        color: ${props => props.theme.darkGreen};
       }
     }
     div {

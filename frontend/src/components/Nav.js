@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import NavStyles from './styles/NavStyles';
 import { connect } from 'react-redux';
+import CartCounter from './CartCounter';
 
 function Nav({authUser}) {
   
@@ -21,6 +22,7 @@ function Nav({authUser}) {
           <Link href="/cart">
             <a>Cart</a>
           </Link>
+          <CartCounter />
           <Link href="/login">
             <a>Logout</a>
           </Link>

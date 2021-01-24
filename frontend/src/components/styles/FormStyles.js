@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 
 const Form = styled.form`
+display: grid;
+grid-template-columns: 1fr 1fr;
+grid-gap: 1.5rem;
 box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.05);
 background: rgba(0, 0, 0, 0.07);
 border: 3px solid white ;

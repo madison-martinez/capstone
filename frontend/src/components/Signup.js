@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import Image from 'next/image';
 import Form from './styles/FormStyles';
 import useForm from '../utils/useForm';
 import { userActions } from '../actions/user';
@@ -26,17 +27,17 @@ function Signup() {
       method="post"
       onSubmit={async e => {
         e.preventDefault();
-        setSubmitted(true); 
+        setSubmitted(true);
         if (firstName && lastName && username && password) {
-           const res = await dispatch(userActions.register(values));
-           console.log(res);
+          const res = await dispatch(userActions.register(values));
+          console.log(res);
         }
         clearForm();
       }}
     >
       <fieldset>
         <h2>Sign Up for An Account</h2>
-        
+
         <label htmlFor="firstName">
           First Name
           <input
@@ -84,6 +85,15 @@ function Signup() {
 
         <button type="submit">Sign Up!</button>
       </fieldset>
+
+      <Image
+        src="/assets/photo-1444459094717-a39f1e3e0903.jpeg"
+        alt=""
+        layout="responsive"
+        width={200}
+        height={200}
+      />
+
     </Form>
   );
 };

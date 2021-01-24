@@ -1,8 +1,16 @@
 import React from 'react';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
+import styled from 'styled-components';
+import Image from 'next/image';
 import Form from './styles/FormStyles';
 import * as actions from '../actions/product';
 import useForm from '../utils/useForm';
+
+const ImageStyles = styled.div`
+    display: grid:
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+`;
 
 const CreateProduct = (props) => {
 
@@ -40,7 +48,6 @@ const CreateProduct = (props) => {
     }
 
     return (
-        <>
         <Form
             data-testid="form"
             onSubmit={handleSubmit}
@@ -93,8 +100,16 @@ const CreateProduct = (props) => {
                 </label>
                 <button type="submit">Submit</button>
             </fieldset>
+
+            <Image
+                src="/assets/photo-1560493676-04071c5f467b.jpeg"
+                alt="fieldrows"
+                layout="responsive"
+                width={200}
+                height={200}
+            />
+
         </Form>
-        </>
     )
 };
 
