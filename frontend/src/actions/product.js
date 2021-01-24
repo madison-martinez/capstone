@@ -43,7 +43,7 @@ export const create = ( data, onSuccess ) => dispatch => {
             type: ACTION_TYPES.CREATE,
             payload: response.data
         })
-        onSuccess();
+        window.location.pathname = '/marketplace';
     })
     .catch(error => {
         throw error});

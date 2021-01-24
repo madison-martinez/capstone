@@ -68,7 +68,7 @@ function handleResponse(response) {
             return Promise.reject(error);
         }
         if (response.ok) {
-            window.location.pathname = '/'
+            window.location.pathname = '/';
         }
 
         return data;

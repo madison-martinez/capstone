@@ -15,13 +15,10 @@ const CreateProduct = (props) => {
         image: ''
     });
 
-    const onSuccess = () => setInitialForm();
-
     const handleSubmit = e => {
         e.preventDefault();
-        props.createProduct(values, () => { window.alert('created a new product') })
-        //TODO Push to the item page that was just created
-        onSuccess();
+        props.createProduct(values)
+        setInitialForm();
     };
 
     const handleImageUpload = async e => {
