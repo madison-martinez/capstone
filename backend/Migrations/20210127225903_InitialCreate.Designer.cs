@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FarmersSpecial.Migrations
 {
     [DbContext(typeof(FarmersSpecialContext))]
-    [Migration("20210118173607_InitialCreate")]
+    [Migration("20210127225903_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -36,6 +36,9 @@ namespace FarmersSpecial.Migrations
 
                     b.Property<byte[]>("PasswordSalt")
                         .HasColumnType("longblob");
+
+                    b.Property<string>("Role")
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Username")
                         .HasColumnType("longtext");

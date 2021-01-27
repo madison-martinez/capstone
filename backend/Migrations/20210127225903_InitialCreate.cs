@@ -33,6 +33,7 @@ namespace FarmersSpecial.Migrations
                     FirstName = table.Column<string>(type: "longtext", nullable: true),
                     LastName = table.Column<string>(type: "longtext", nullable: true),
                     Username = table.Column<string>(type: "longtext", nullable: true),
+                    Role = table.Column<string>(type: "longtext", nullable: true),
                     PasswordHash = table.Column<byte[]>(type: "longblob", nullable: true),
                     PasswordSalt = table.Column<byte[]>(type: "longblob", nullable: true)
                 },

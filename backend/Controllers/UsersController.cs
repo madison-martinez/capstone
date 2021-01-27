@@ -64,6 +64,7 @@ namespace FarmersSpecial.Controllers
                 Username = user.Username,
                 FirstName = user.FirstName,
                 LastName = user.LastName,
+                Role = user.Role,
                 Token = tokenString
             });
         }

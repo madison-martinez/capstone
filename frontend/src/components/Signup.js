@@ -7,17 +7,23 @@ import { userActions } from '../actions/user';
 
 
 function Signup() {
-  const { values, handleChange } = useForm({
+  const { values, handleChange, setValues } = useForm({
     firstName: '',
     lastName: '',
     username: '',
     password: '',
+    role: ''
   });
+
+  const handleSelect = e => {
+    const roleSelection = e.target.value;
+    setValues({ role: roleSelection });
+  }
 
   const [submitted, setSubmitted] = useState(false);
   const { firstName, lastName, username, password } = values;
   const dispatch = useDispatch();
-
+  console.log(values)
   useEffect(() => {
     dispatch(userActions.logout());
   }, []);
@@ -81,13 +87,22 @@ function Signup() {
             required
           />
         </label>
+        <label htmlFor="role">
+          Select Your Profession
+          <select type="select" value={values.role} onChange={handleSelect}>
+              <option default></option>
+              <option value="farmer">Farmer</option>
+              <option value="restaurant">Restaurant</option>
+            </select>
+          </label>
+  
 
         <button type="submit">Sign Up!</button>
       </fieldset>
 
       <Image
         src="/assets/photo-1444459094717-a39f1e3e0903.jpeg"
-        alt=""
+        alt="berries"
         layout="responsive"
         width={200}
         height={200}

@@ -35,6 +35,9 @@ namespace FarmersSpecial.Migrations
                     b.Property<byte[]>("PasswordSalt")
                         .HasColumnType("longblob");
 
+                    b.Property<string>("Role")
+                        .HasColumnType("longtext");
+
                     b.Property<string>("Username")
                         .HasColumnType("longtext");
 

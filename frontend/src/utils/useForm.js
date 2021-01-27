@@ -12,6 +12,11 @@ export default function useForm(initialState = {}) {
         if (type === 'file') {
             [value] = e.target.files;
         }
+
+        if (type === 'select') {
+            value = e.target.value;
+        }
+      
         setValues({
             ...values,
             [name]: value
