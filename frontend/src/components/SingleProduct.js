@@ -16,6 +16,11 @@ const SingleProductStyles = styled.div`
     .details {
         font-size: 2rem;
     }
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
 `;
 
 const SingleProduct = ({ id, productList, singleProduct }) => {
@@ -29,20 +34,20 @@ const SingleProduct = ({ id, productList, singleProduct }) => {
     //add in loading 
     return (
         <>
+        <SingleProductStyles>
         {values.image && 
           <Image 
             src={values.image} 
             alt={values.title} 
             width={500}
-            height={600}
-            responsive
+            height={500}
+            layout='fixed'
           />}
             <Head>
                 <title>
                     Farmer's Special - {values.title}
                 </title>
             </Head>
-            <SingleProductStyles>
                 <div className="details">
                     <h3>Looking at {values.title}.</h3>
                     <p>{values.description}</p>

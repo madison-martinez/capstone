@@ -75,7 +75,7 @@ function CartProduct({ cartCount, totalPrice, cartProducts, deleteCartProduct })
       </CartList>
     </>
   )
-}
+};
 
 
 const mapStateToProps = state => ({
@@ -86,6 +86,6 @@ const mapStateToProps = state => ({
 
 const mapActionsToProps = {
   deleteCartProduct: actions.deleteCartProduct
-}
+};
 
 export default connect(mapStateToProps, mapActionsToProps)(CartProduct);

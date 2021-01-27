@@ -9,6 +9,9 @@ const PaginationStyles = styled.div`
     span {
         margin-left: 1rem;
     }
+    a {
+        color: ${props => props.theme.blue}
+    }
     
 `;
 
@@ -21,6 +24,11 @@ const Pagination = ({ productsPerPage, totalProducts, paginate }) => {
 
     return (
         <PaginationStyles>
+            {pageNumbers.length > 1 && (
+                <span>
+                    ←
+                </span>
+            )}
             {pageNumbers.map(num => (
                 <Link
                     href='#'
@@ -33,6 +41,12 @@ const Pagination = ({ productsPerPage, totalProducts, paginate }) => {
                     </span>
                 </Link>
             ))}
+
+            {pageNumbers.length > 1 && (
+                <span>
+                    →
+                </span>
+            )}
         </PaginationStyles>
     )
 };

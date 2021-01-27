@@ -38,7 +38,7 @@ const DetailsStyles = styled.div`
   font-size: 1.2rem;
 `;
 
-function Product({ products, loading, addToCart, getCartCount, cartProps }) {
+function Product({ products, addToCart, getCartCount, cartProps }) {
 
   let items = [];
   for (let i = 0; i < products.length; i++) {
