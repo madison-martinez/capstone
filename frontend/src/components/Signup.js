@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import Form from './styles/FormStyles';
 import useForm from '../utils/useForm';
 import { userActions } from '../actions/user';
 
 
 function Signup() {
-  const { values, handleChange, setValues } = useForm({
+  const { values, handleChange, handleSelect } = useForm({
     firstName: '',
     lastName: '',
     username: '',
@@ -15,15 +16,11 @@ function Signup() {
     role: ''
   });
 
-  const handleSelect = e => {
-    const roleSelection = e.target.value;
-    setValues({ role: roleSelection });
-  }
-
   const [submitted, setSubmitted] = useState(false);
   const { firstName, lastName, username, password } = values;
   const dispatch = useDispatch();
-  console.log(values)
+  const router = useRouter();
+ 
   useEffect(() => {
     dispatch(userActions.logout());
   }, []);
@@ -37,6 +34,7 @@ function Signup() {
         if (firstName && lastName && username && password) {
           const res = await dispatch(userActions.register(values));
           console.log(res);
+          router.push('/login')
         }
       }}
     >
@@ -112,4 +110,5 @@ function Signup() {
   );
 };
 
-export default Signup;
+
+export default (Signup);

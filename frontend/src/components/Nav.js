@@ -4,11 +4,10 @@ import { connect } from 'react-redux';
 import CartCounter from './CartCounter';
 
 function Nav({authUser}) {
-  
-  console.log(authUser)
+  //TODO base off of user role
   return (
     <NavStyles>
-      {authUser && (
+      {authUser &&(
         <>
           <Link href="/marketplace">
             <a>Marketplace</a>
@@ -48,4 +47,6 @@ const mapStateToProps = state => ({
 })
 
 export default connect(mapStateToProps)(Nav);
+
+export const Test = Nav;
 

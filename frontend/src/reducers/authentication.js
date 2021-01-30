@@ -5,7 +5,6 @@ const initialState = {
 }
 
 export function authentication(state = initialState, action) {
-    console.log(action.user)
     switch (action.type) {
         case userConstants.LOGIN_REQUEST:
             return {

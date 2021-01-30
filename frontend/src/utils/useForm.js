@@ -8,7 +8,7 @@ export default function useForm(initialState = {}) {
 
     function handleChange(e) {
         let { value, name, type } = e.target;
-        
+
         if (type === 'file') {
             [value] = e.target.files;
         }
@@ -16,12 +16,20 @@ export default function useForm(initialState = {}) {
         if (type === 'select') {
             value = e.target.value;
         }
-      
+
         setValues({
             ...values,
             [name]: value
         });
     };
+
+    const handleSelect = e => {
+        const roleSelection = e.target.value;
+        setValues({ 
+            ...values,
+            role: roleSelection 
+        });
+    }
 
     function clearForm() {
         const emptyForm = Object.fromEntries(
@@ -35,10 +43,11 @@ export default function useForm(initialState = {}) {
     };
 
     return {
-        values, 
+        values,
         setValues,
-        handleChange, 
-        clearForm, 
+        handleChange,
+        clearForm,
         setInitialForm,
+        handleSelect,
     }
 };

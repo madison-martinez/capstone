@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector, connect } from 'react-redux';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import useForm from '../utils/useForm';
 import Form from './styles/FormStyles';
 import { userActions } from '../actions/user';
 import { alertActions } from '../actions/alert';
 
 
-function LoginPage() {
+function LoginPage({authUser}) {
+   
     const { values, handleChange, clearForm } = useForm({
         username: '',
         password: '',
@@ -16,11 +18,16 @@ function LoginPage() {
     const { username, password } = values;
     const dispatch = useDispatch();
     const alert = useSelector(state => state.alert);
+    const router = useRouter();
+
 
     useEffect(() => {
         dispatch(userActions.logout());
         dispatch(alertActions.reset());
-    }, []);
+        if(authUser) {
+            router.push('/')
+        }
+    }, [authUser]);
 
     return (
         <Form
@@ -80,5 +87,8 @@ function LoginPage() {
     );
 };
 
+const mapStateToProps = state => ({
+    authUser: state.authentication.user
+  })
 
-export default LoginPage;
+export default connect(mapStateToProps)(LoginPage);

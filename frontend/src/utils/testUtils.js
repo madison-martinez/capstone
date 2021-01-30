@@ -23,16 +23,15 @@ const thunk = ({ dispatch, getState }) => next => action => {
     if (typeof action === 'function') {
       return action(dispatch, getState)
     }
-  
     return next(action)
 };
 
 const fakeItem = () => ({
-    id: 'abc123',
-    price: 5000,
+    id: '1',
+    price: 20.00,
     title: 'Roses',
     description: 'Roses are Red',
-  });
+});
 
 export {
     fakeItem,

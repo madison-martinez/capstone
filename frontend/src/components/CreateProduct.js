@@ -56,8 +56,7 @@ const CreateProduct = (props) => {
                 </label>
                 <label htmlFor="title">
                     Title
-                    <input
-                        type="text"
+                    <textarea
                         id="title"
                         name="title"
                         placeholder="Title"
@@ -103,12 +102,10 @@ const CreateProduct = (props) => {
         </Form>
     )
 };
-
 const mapStateToProps = state => ({ productList: state.product.list });
 
 const mapActionsToProps = {
     createProduct: actions.create,
 };
-
 
 export default connect(mapStateToProps, mapActionsToProps)(CreateProduct);

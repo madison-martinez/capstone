@@ -3,6 +3,7 @@ import { authHeader } from '../utils/authHeader';
 
 const baseUrl = "https://localhost:5001";
 
+
 export const userService = {
     login,
     logout,
@@ -24,12 +25,12 @@ function login(username, password) {
             localStorage.setItem('user', JSON.stringify(user));
             return user;
         })
-}
+};
 
 function logout() {
     // remove user from local storage to log user out
     localStorage.removeItem('user');
-}
+};
 
 function getById(id) {
     const requestOptions = {
@@ -38,7 +39,7 @@ function getById(id) {
     };
 
     return fetch(`${baseUrl}/users/${id}`, requestOptions).then(handleResponse);
-}
+};
 
 function register(user) {
     const requestOptions = {
@@ -54,7 +55,7 @@ function register(user) {
             localStorage.setItem('user', JSON.stringify(user));
             return user;
         });
-}
+};
 
 function handleResponse(response) {
     return response.text().then(text => {
@@ -67,10 +68,7 @@ function handleResponse(response) {
             const error = (data && data.message) || response.statusText;
             return Promise.reject(error);
         }
-        if (response.ok) {
-            window.location.pathname = '/';
-        }
 
         return data;
     });
-}
+};

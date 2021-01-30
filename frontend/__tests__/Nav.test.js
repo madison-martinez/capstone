@@ -1,14 +1,26 @@
 import { render } from '@testing-library/react';
-import Nav from '../src/components/Nav';
+import { Test as Nav } from '../src/components/Nav';
 
-describe('<Nav />', () => {
-    it('renders nav links', () => {
-        const { container } = render(
-            <Nav />
-        );
-        expect(container).toHaveTextContent('Marketplace');
-        expect(container).toHaveTextContent('Sell');
-    })
+jest.mock('react-redux', () => {
+    return {
+        connect: (props) => (ui) => () => ui(props)
+    }
 });
 
-//TODO Add in tests to test views whether logged in or not
+describe('<Nav />', () => {
+    it('renders nav links if user is not logged in', () => {
+        const { container } = render(
+            <Nav authUser={false} />
+        );
+        expect(container).toHaveTextContent('Signup');
+        expect(container).toHaveTextContent('Login');
+    });
+    it('renders nav links if user is logged in', () => {
+        const { container } = render(
+            <Nav authUser={true} />
+        );
+        expect(container).toHaveTextContent('Sell');
+        expect(container).toHaveTextContent('Orders');
+        expect(container).toHaveTextContent('Logout');
+    });
+});
