@@ -39,4 +39,4 @@ export const clearCart = () => {
             type: CartActionTypes.CLEAR_CART
         })
     }
-}
+};

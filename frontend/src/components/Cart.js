@@ -36,6 +36,7 @@ function Cart({ cartProducts, totalPrice, placeOrder, clearCart }) {
             <button
                 disabled={cartProducts.length === 0}
                 type="button"
+                data-testid="order-button"
                 onClick={() => {
                     placeOrder({
                     products: cartProducts,

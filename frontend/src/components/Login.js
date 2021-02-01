@@ -24,10 +24,7 @@ function LoginPage({authUser}) {
     useEffect(() => {
         dispatch(userActions.logout());
         dispatch(alertActions.reset());
-        if(authUser) {
-            router.push('/')
-        }
-    }, [authUser]);
+    }, []);
 
     return (
         <Form
@@ -37,6 +34,7 @@ function LoginPage({authUser}) {
                 setSubmitted(true);
                 if (username && password) {
                     dispatch(userActions.login(username, password));
+                    router.push('/')
                 }
                 clearForm();
             }}

@@ -1,6 +1,6 @@
 import { ACTION_TYPES } from '../actions/product';
 
-const initialState = {
+export const initialState = {
     list: []
 }
 

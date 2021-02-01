@@ -1,0 +1,67 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Home /> should render home page with no user 1`] = `
+<div>
+  <div
+    class="Home__GalleryStyles-sc-1ig96v5-0 jmUsjy"
+  >
+    <div
+      style="display: block; overflow: hidden; position: relative; box-sizing: border-box; margin: 0px;"
+    >
+      <div
+        style="display: block; box-sizing: border-box; padding-top: 150%;"
+      />
+      <img
+        alt="farmer watering plant"
+        decoding="async"
+        src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+        style="visibility: hidden; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+      />
+    </div>
+    <div
+      class="text-center"
+    >
+      <h2>
+        What We Do
+      </h2>
+      <p>
+        We are trying to be a link in a somewhat broken supply chain. We are looking to help the small providers get their products into the locals hands and bellies.
+      </p>
+      <h2>
+        Why We Do It
+      </h2>
+      <p>
+        While the food supply chain has been stressed for awhile, the COVID pandemic has really brought to light the connection between farmers and consumers, especially small businesses. Instead of having farmers dump milk or plow fields full of food, we hope to maybe find places for that food to go, while keeping the farmers fed too.
+      </p>
+      <h2>
+        Where You Fit In
+      </h2>
+      <p>
+        The goal of this website is to allow local producers to list items they have for sale to local restaurants who may be looking to get a larger margin on dishes during this difficult time. So, if you would like to see what is available to you, please sign up or login and we look forward to seeing what you create.
+      </p>
+      <div
+        class="buttons-section"
+      >
+        <a
+          href="/login"
+        >
+          Logout
+        </a>
+      </div>
+    </div>
+    <div
+      style="display: block; overflow: hidden; position: relative; box-sizing: border-box; margin: 0px;"
+    >
+      <div
+        style="display: block; box-sizing: border-box; padding-top: 150%;"
+      />
+      <img
+        alt="kitchen worker salting food"
+        decoding="async"
+        src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+        style="visibility: hidden; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+      />
+    </div>
+  </div>
+</div>
+`;

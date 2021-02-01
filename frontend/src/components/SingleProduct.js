@@ -48,7 +48,7 @@ const SingleProduct = ({ id, productList, singleProduct }) => {
                     Farmer's Special - {values.title}
                 </title>
             </Head>
-                <div className="details">
+                <div className="details" data-testid="details">
                     <h3>Looking at {values.title}.</h3>
                     <p>{values.description}</p>
                     <p>{formatMoney(values.price)}</p>

@@ -11,7 +11,7 @@ export const ACTION_TYPES = {
 
 export const fetchAll = () => dispatch => {
     //GET REQUEST
-    api.product().fetchAll()
+    return api.product().fetchAll()
     .then(
         response => {
         dispatch({

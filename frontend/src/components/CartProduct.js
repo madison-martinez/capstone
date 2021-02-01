@@ -34,8 +34,7 @@ function CartProduct({ cartCount, totalPrice, cartProducts, deleteCartProduct })
   let items = [];
   for (let i = 0; i < cartProducts.length; i++) {
     items.push(
-      <>
-        <div>
+        <div key={cartProducts[i].id + i}>
           {cartProducts[i].image &&
             <Image
               src={cartProducts[i].image}
@@ -44,7 +43,7 @@ function CartProduct({ cartCount, totalPrice, cartProducts, deleteCartProduct })
               height={100}
               fill
             />}
-          <div key={cartProducts[i].id + i}>
+          <div>
             <h3>
               {cartProducts[i].product}
             </h3>
@@ -62,7 +61,6 @@ function CartProduct({ cartCount, totalPrice, cartProducts, deleteCartProduct })
             </button>
           </div>
         </div>
-      </>
     )
   }
   return (

@@ -33,9 +33,17 @@ const fakeItem = () => ({
     description: 'Roses are Red',
 });
 
+const fakeUser = () => ({
+  id: '1',
+  username: 'Madison',
+  password: 'password',
+  role: 'notafarmer',
+});
+
 export {
     fakeItem,
-    thunk
+    thunk, 
+    fakeUser
 };
 
 export * from '@testing-library/react';

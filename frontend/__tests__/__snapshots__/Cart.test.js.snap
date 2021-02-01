@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`< Cart /> should display empty cart when no items in state 1`] = `
+<div>
+  <h1>
+    Your cart looks pretty empty.
+  </h1>
+  <h3>
+    You have 
+    0
+     items in your cart!
+  </h3>
+  <div
+    class="CartProduct__CartList-sc-17ufdy6-0 fqLdmC"
+  />
+  <h2>
+    Your total is: 
+    $0.00
+  </h2>
+  <button
+    data-testid="order-button"
+    disabled=""
+    type="button"
+  >
+    Place Order
+  </button>
+</div>
+`;

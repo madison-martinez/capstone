@@ -5,7 +5,6 @@ const initialState = {
 }
 
 export function order(state = initialState, action) {
-    console.log(state)
     switch(action.type) {
         case OrderActionTypes.PLACE_ORDER: 
         return {
