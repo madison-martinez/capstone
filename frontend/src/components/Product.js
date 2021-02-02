@@ -1,9 +1,10 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import DeleteButton from './DeleteButton';
 import ProductStyles from './styles/ProductStyles';
 import formatMoney from '../utils/formatMoney';
@@ -11,20 +12,33 @@ import { addToCart, getCartCount } from '../actions/cart';
 
 const ProductsList = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 2rem;
   margin: 0 auto;
   max-width: ${props => props.theme.maxWidth};
+  .image {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 1rem;
+    h3 {
+      a:hover {
+        background-color: ${props => props.theme.blue};
+      }
+    }
+  }
   a {
     display: flex;
-    justify-content: center;
     align-items: center;
-    }
+    justify-content: center;
+  }
   .button-list {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
     .shopping-cart-icon {
-      grid-column-start: 4;
+      grid-column-start: 3;
+      font-size: 0.2rem;
+      width: 4rem;
+      height: 4rem;
     }
     @media (max-width: 750px) {
       grid-template-columns: auto 1fr;
@@ -43,6 +57,7 @@ function Product({ products, addToCart, getCartCount, cartProps, user }) {
   for (let i = 0; i < products.length; i++) {
     items.push(
       <ProductStyles key={products[i].id}>
+          <div className='image'>
         <h3>
           <Link
             href={{
@@ -52,6 +67,15 @@ function Product({ products, addToCart, getCartCount, cartProps, user }) {
             <a>{products[i].title}</a>
           </Link>
         </h3>
+        {products[i].image && 
+          <Image 
+            src={products[i].image} 
+            alt={products[i].title} 
+            width={100}
+            height={100}
+            layout='fixed'
+          />}
+        </div>
         <DetailsStyles>
           <p>{products[i].description}</p>
           <p>{formatMoney(products[i].price)}</p>
@@ -84,7 +108,7 @@ function Product({ products, addToCart, getCartCount, cartProps, user }) {
                 quantity: 0,
                 image: products[i].image
               })}>
-              <FontAwesomeIcon icon={faShoppingCart} />
+              <FontAwesomeIcon icon={faShoppingCart} size={'sm'} />
             </button>
           )}
 
