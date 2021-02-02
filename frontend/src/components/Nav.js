@@ -3,17 +3,39 @@ import NavStyles from './styles/NavStyles';
 import { connect } from 'react-redux';
 import CartCounter from './CartCounter';
 
-function Nav({authUser}) {
+function Nav({ authUser }) {
   //TODO base off of user role
   return (
     <NavStyles>
-      {authUser &&(
+
+      {!authUser && (
+        <>
+          <Link href="/signup">
+            <a>Signup</a>
+          </Link>
+          <Link href="/login">
+            <a>Login</a>
+          </Link>
+        </>
+      )}
+      {authUser && authUser.role === 'farmer' && (
         <>
           <Link href="/marketplace">
             <a>Marketplace</a>
           </Link>
           <Link href="/sell">
             <a>Sell</a>
+          </Link>
+          <Link href="/login">
+            <a>Logout</a>
+          </Link>
+        </>
+      )
+      }
+      {authUser && authUser.role === 'restaurant' && (
+        <>
+          <Link href="/marketplace">
+            <a>Marketplace</a>
           </Link>
           <Link href="/orders">
             <a>Orders</a>
@@ -28,16 +50,6 @@ function Nav({authUser}) {
         </>
       )
       }
-      {!authUser && (
-        <>
-          <Link href="/signup">
-            <a>Signup</a>
-          </Link>
-          <Link href="/login">
-            <a>Login</a>
-          </Link>
-        </>
-      )}
     </NavStyles>
   )
 };

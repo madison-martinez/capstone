@@ -2,10 +2,8 @@ import React from 'react';
 import { render, screen } from '../src/utils/testUtils';
 import { rest } from 'msw';
 import { setupServer } from 'msw/node';
-import userEvent from '@testing-library/user-event'
+import userEvent from '@testing-library/user-event';
 import Login from '../src/components/Login';
-
-const mockDispatch = jest.fn();
 
 const server = setupServer(
     rest.post("/login", (req, res, ctx) => {

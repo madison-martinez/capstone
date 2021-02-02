@@ -1,14 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import Form from './styles/FormStyles';
 import * as actions from '../actions/product';
 import useForm from '../utils/useForm';
 
 
 const CreateProduct = (props) => {
+    const router = useRouter();
 
-    const { values, handleChange, setInitialForm, setValues } = useForm({
+    const { values, handleChange, setValues } = useForm({
         title: '',
         description: '',
         price: 0,
@@ -17,8 +19,10 @@ const CreateProduct = (props) => {
 
     const handleSubmit = e => {
         e.preventDefault();
-        props.createProduct(values)
-        setInitialForm();
+        props.createProduct(values);
+        if(values) {
+            router.push('/marketplace')
+        }
     };
 
     const handleImageUpload = async e => {
@@ -61,7 +65,7 @@ const CreateProduct = (props) => {
                         name="title"
                         placeholder="Title"
                         required
-                        value={values.title}
+                        value={values.title || ''}
                         onChange={handleChange}
                     />
                 </label>
@@ -72,7 +76,7 @@ const CreateProduct = (props) => {
                         name="description"
                         placeholder="Description"
                         required
-                        value={values.description}
+                        value={values.description || ''}
                         onChange={handleChange}
                     />
                 </label>
@@ -84,7 +88,7 @@ const CreateProduct = (props) => {
                         name="price"
                         placeholder="Price"
                         required
-                        value={values.price}
+                        value={values.price || ''}
                         onChange={handleChange}
                     />
                 </label>

@@ -38,8 +38,7 @@ const DetailsStyles = styled.div`
   font-size: 1.2rem;
 `;
 
-function Product({ products, addToCart, getCartCount, cartProps }) {
-
+function Product({ products, addToCart, getCartCount, cartProps, user }) {
   let items = [];
   for (let i = 0; i < products.length; i++) {
     items.push(
@@ -59,32 +58,35 @@ function Product({ products, addToCart, getCartCount, cartProps }) {
         </DetailsStyles>
 
         <div className="button-list">
-
-          {/* TODO: if user is restaurant user, show add to cart button here instead of edit and delete */}
-
-          <Link
-            href={{
-              pathname: 'update',
-              query: { id: products[i].id },
-            }}
-          >
-            <a>Edit</a>
-          </Link>
-          <DeleteButton id={products[i].id} />
-          <button
-            className="shopping-cart-icon"
-            type="button"
-            id={products[i].id}
-            onClick={() => addToCart({
-              product: products[i].title,
-              id: [i],
-              price: products[i].price,
-              description: products[i].description,
-              quantity: 0,
-              image: products[i].image
-            })}>
-            <FontAwesomeIcon icon={faShoppingCart} />
-          </button>
+          {user.role === 'farmer' && (
+            <>
+              <Link
+                href={{
+                  pathname: 'update',
+                  query: { id: products[i].id },
+                }}
+              >
+                <a>Edit</a>
+              </Link>
+              <DeleteButton id={products[i].id} />
+            </>
+          )}
+          {user.role === 'restaurant' && (
+            <button
+              className="shopping-cart-icon"
+              type="button"
+              id={products[i].id}
+              onClick={() => addToCart({
+                product: products[i].title,
+                id: [i],
+                price: products[i].price,
+                description: products[i].description,
+                quantity: 0,
+                image: products[i].image
+              })}>
+              <FontAwesomeIcon icon={faShoppingCart} />
+            </button>
+          )}
 
         </div>
       </ProductStyles>
@@ -98,7 +100,8 @@ function Product({ products, addToCart, getCartCount, cartProps }) {
 };
 
 const mapStateToProps = state => ({
-  cartProps: state.cart
+  cartProps: state.cart,
+  user: state.authentication.user
 });
 
 export default connect(mapStateToProps, { addToCart, getCartCount })(Product);
