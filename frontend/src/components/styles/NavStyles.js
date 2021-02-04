@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const NavStyles = styled.ul`
   margin: 0;
@@ -16,17 +16,17 @@ const NavStyles = styled.ul`
     font-size: 1.2em;
     background: none;
     cursor: pointer;
-    color: ${props => props.theme.darkBlue};
+    color: ${(props) => props.theme.darkBlue};
     @media (max-width: 700px) {
       font-size: 1.2rem;
-      padding: 0 .5rem;
+      padding: 0 0.5rem;
     }
     &:hover {
-      color: ${props => props.theme.lightGray};
+      color: ${(props) => props.theme.lightGray};
     }
   }
   @media (max-width: 1300px) {
-    border-top: 2px solid ${props => props.theme.darkBlue};
+    border-top: 2px solid ${(props) => props.theme.darkBlue};
     width: 100%;
     justify-content: center;
     font-size: 1.5rem;

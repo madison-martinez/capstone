@@ -19,20 +19,20 @@ export const product = (state = initialState, action) => {
         case ACTION_TYPES.UPDATE:
             return {
                 ...state,
-                list: state.list.map(x => 
+                list: state.list.map(x =>
                     x.id === action.payload.id ? action.payload : x)
             };
         case ACTION_TYPES.DELETE:
             return {
                 ...state,
                 list: state.list.filter(x =>
-                    x.id !== action.payload )
+                    x.id !== action.payload)
             };
-        case ACTION_TYPES.FETCH_BY_ID:  
+        case ACTION_TYPES.FETCH_BY_ID:
             return {
                 list: [...action.payload]
             }
-        default: 
+        default:
             return state;
     }
 };

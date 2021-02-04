@@ -1,16 +1,16 @@
-import { OrderActionTypes } from '../actions/order';
+import { OrderActionTypes } from "../actions/order";
 
 const initialState = {
-    products: []
-}
+  products: [],
+};
 
 export function order(state = initialState, action) {
-    switch(action.type) {
-        case OrderActionTypes.PLACE_ORDER: 
-        return {
-            products: [...state.products, action.payload]
-        }
-        default:
-            return state;
-    }
+  switch (action.type) {
+    case OrderActionTypes.PLACE_ORDER:
+      return {
+        products: [...state.products, action.payload],
+      };
+    default:
+      return state;
+  }
 }

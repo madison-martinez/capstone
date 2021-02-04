@@ -1,13 +1,11 @@
-import Link from 'next/link';
-import NavStyles from './styles/NavStyles';
-import { connect } from 'react-redux';
-import CartCounter from './CartCounter';
+import Link from "next/link";
+import NavStyles from "./styles/NavStyles";
+import { connect } from "react-redux";
+import CartCounter from "./CartCounter";
 
 function Nav({ authUser }) {
-  //TODO base off of user role
   return (
     <NavStyles>
-
       {!authUser && (
         <>
           <Link href="/signup">
@@ -18,7 +16,7 @@ function Nav({ authUser }) {
           </Link>
         </>
       )}
-      {authUser && authUser.role === 'farmer' && (
+      {authUser && authUser.role === "farmer" && (
         <>
           <Link href="/marketplace">
             <a>Marketplace</a>
@@ -30,9 +28,8 @@ function Nav({ authUser }) {
             <a>Logout</a>
           </Link>
         </>
-      )
-      }
-      {authUser && authUser.role === 'restaurant' && (
+      )}
+      {authUser && authUser.role === "restaurant" && (
         <>
           <Link href="/marketplace">
             <a>Marketplace</a>
@@ -48,17 +45,15 @@ function Nav({ authUser }) {
             <a>Logout</a>
           </Link>
         </>
-      )
-      }
+      )}
     </NavStyles>
-  )
-};
+  );
+}
 
-const mapStateToProps = state => ({
-  authUser: state.authentication.user
-})
+const mapStateToProps = (state) => ({
+  authUser: state.authentication.user,
+});
 
 export default connect(mapStateToProps)(Nav);
 
 export const Test = Nav;
-
