@@ -69,6 +69,7 @@ function Signup() {
             value={values.username}
             onChange={handleChange}
             required
+            autoComplete="username"
           />
         </label>
         <label htmlFor="password">
@@ -80,6 +81,7 @@ function Signup() {
             value={values.password}
             onChange={handleChange}
             required
+            autoComplete="new-password"
           />
         </label>
         <label htmlFor="role">

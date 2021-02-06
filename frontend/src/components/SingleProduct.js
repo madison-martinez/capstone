@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import styled from "styled-components";
@@ -24,33 +24,30 @@ const SingleProductStyles = styled.div`
 `;
 
 const SingleProduct = ({ id, productList, singleProduct }) => {
-  const [values, setValues] = useState({});
 
   useEffect(() => {
     singleProduct(id);
-    setValues({ ...productList.find((item) => item.id === parseInt(id)) });
-  }, [id]);
-  //add in error
-  //add in loading
+  }, [id, singleProduct]);
+
   return (
     <>
       <SingleProductStyles>
-        {values.image && (
+        {productList[0].image && (
           <Image
-            src={values.image}
-            alt={values.title}
+            src={productList[0].image}
+            alt={productList[0].title}
             width={500}
             height={500}
             layout="fixed"
           />
         )}
         <Head>
-          <title>Farmer's Special - {values.title}</title>
+          <title>Farmer's Special - {productList[0].title}</title>
         </Head>
         <div className="details" data-testid="details">
-          <h3>Looking at {values.title}.</h3>
-          <p>{values.description}</p>
-          <p>{formatMoney(values.price)}</p>
+          <h3>Looking at {productList[0].title}.</h3>
+          <p>{productList[0].description}</p>
+          <p>{formatMoney(productList[0].price)}</p>
         </div>
       </SingleProductStyles>
     </>

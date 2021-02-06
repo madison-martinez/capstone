@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
+import { useRouter } from "next/router";
 import Form from "./styles/FormStyles";
 import * as actions from "../actions/product";
 import useForm from "../utils/useForm";
@@ -15,21 +16,22 @@ const UpdateProduct = ({
     description: "",
     price: 0,
   });
+  
+  const router = useRouter();
 
   useEffect(() => {
     fetchAllProducts();
     setValues({ ...productList.find((item) => item.id === parseInt(id)) });
   }, []);
 
-  const handleSubmit = (e) => {
+  const handleOnSuccess = () => router.push("/marketplace");
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    updateProduct(id, values, () => {
-      window.alert("updated a new product");
-    });
+    updateProduct(id, values, handleOnSuccess);
   };
 
   return (
-    <>
       <Form
         data-testid="form"
         onSubmit={handleSubmit} //TODO POST INFO TO API AND DB
@@ -73,7 +75,6 @@ const UpdateProduct = ({
           <button type="submit">Submit</button>
         </fieldset>
       </Form>
-    </>
   );
 };
 

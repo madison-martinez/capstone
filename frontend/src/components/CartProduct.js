@@ -31,7 +31,6 @@ const CartList = styled.div`
 
 function CartProduct({
   cartCount,
-  totalPrice,
   cartProducts,
   deleteCartProduct,
 }) {
@@ -45,7 +44,6 @@ function CartProduct({
             alt={cartProducts[i].product}
             width={100}
             height={100}
-            fill
           />
         )}
         <div>
@@ -77,7 +75,6 @@ function CartProduct({
 
 const mapStateToProps = (state) => ({
   cartCount: state.cart.cartCount,
-  totalPrice: state.cart.totalPrice,
   cartProducts: state.cart.cartProducts,
 });
 

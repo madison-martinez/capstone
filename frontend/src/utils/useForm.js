@@ -5,10 +5,9 @@ import { useState } from 'react';
 export default function useForm(initialState = {}) {
     const [values, setValues] = useState(initialState);
 
-
     function handleChange(e) {
         let { value, name, type } = e.target;
-
+        
         if (type === 'file') {
             [value] = e.target.files;
         }
@@ -23,13 +22,13 @@ export default function useForm(initialState = {}) {
         });
     };
 
-    const handleSelect = e => {
+    const handleSelect = (e) => {
         const roleSelection = e.target.value;
         setValues({ 
             ...values,
             role: roleSelection 
         });
-    }
+    };
 
     function clearForm() {
         const emptyForm = Object.fromEntries(

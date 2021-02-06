@@ -29,6 +29,7 @@ const GalleryStyles = styled.div`
 `;
 
 function Home({ authUser }) {
+  console.log(authUser)
   return (
     <GalleryStyles>
       <Image
@@ -62,12 +63,12 @@ function Home({ authUser }) {
           look forward to seeing what you create.
         </p>
         <div className="buttons-section">
-          {authUser && (
+          {authUser.token && (
             <Link className="center" href="/login">
               <a>Logout</a>
             </Link>
           )}
-          {!authUser && (
+          {!authUser.token && (
             <>
               <Link href="/signup">
                 <a>Signup</a>

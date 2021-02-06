@@ -5,6 +5,8 @@ export const initialState = {
 }
 
 export const product = (state = initialState, action) => {
+    console.log(action.payload)
+    console.log(action.type)
     switch (action.type) {
         case ACTION_TYPES.FETCH_ALL:
             return {
@@ -30,7 +32,7 @@ export const product = (state = initialState, action) => {
             };
         case ACTION_TYPES.FETCH_BY_ID:
             return {
-                list: [...action.payload]
+                list: [action.payload]
             }
         default:
             return state;

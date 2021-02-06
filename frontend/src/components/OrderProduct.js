@@ -21,7 +21,7 @@ function OrderProduct({ orderProducts, price }) {
   let orders = [];
   for (let i = 0; i < orderProducts.length; i++) {
     orders.push(
-      <OrderItemStyles>
+      <OrderItemStyles key={orderProducts[i].id}>
         <p>
           {orderProducts[i].products.map((item, index) => {
             return <li key={index}>{item.product}</li>;
