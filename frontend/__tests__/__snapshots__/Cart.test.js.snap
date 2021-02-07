@@ -11,7 +11,7 @@ exports[`< Cart /> should display empty cart when no items in state 1`] = `
      items in your cart!
   </h3>
   <div
-    class="CartProduct__CartList-sc-17ufdy6-0 fqLdmC"
+    class="CartProduct__CartList-sc-17ufdy6-0 xzHqC"
   />
   <h2>
     Your total is: 

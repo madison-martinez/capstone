@@ -47,9 +47,6 @@ function LoginPage({ authUser }) {
             value={values.username}
             onChange={handleChange}
           />
-          {submitted && !username && (
-            <div className="invalid-feedback">Username is required</div>
-          )}
         </label>
         <label htmlFor="password">
           Password
@@ -59,10 +56,9 @@ function LoginPage({ authUser }) {
             placeholder="Password"
             value={values.password}
             onChange={handleChange}
+            autoComplete="new-password"
+
           />
-          {submitted && !username && (
-            <div className="invalid-feedback">Password is required</div>
-          )}
         </label>
         <button type="submit">Sign In!</button>
       </fieldset>

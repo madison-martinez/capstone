@@ -14,7 +14,7 @@ export const userConstants = {
 };
 
 function login(username, password, handleOnSuccess) {
-  return (dispatch) => {
+  return async (dispatch) => {
     dispatch(request({ username }));
 
     userService.login(username, password).then(
@@ -46,7 +46,7 @@ function logout() {
 }
 
 function register(user, handleOnSuccess) {
-  return (dispatch) => {
+  return async (dispatch) => {
     dispatch(request(user));
 
     userService.register(user).then(

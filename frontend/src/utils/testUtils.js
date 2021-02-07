@@ -36,8 +36,10 @@ const fakeItem = () => ({
 const fakeUser = () => ({
   id: '1',
   username: 'Madison',
-  password: 'password',
+  firstName: 'Madison',
+  lastName: 'fakeLastName',
   role: 'notafarmer',
+  token: 'fakeToken'
 });
 
 export {

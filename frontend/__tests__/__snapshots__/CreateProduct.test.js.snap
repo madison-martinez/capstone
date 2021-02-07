@@ -1,9 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<CreateProduct /> should render form with initial state 1`] = `
+exports[`<CreateProduct /> should render empty form 1`] = `
 <div>
   <form
-    class="FormStyles__Form-sc-1qtbzh2-0 eiZFuO"
+    class="FormStyles__Form-sc-1qtbzh2-0 cmkxQl"
     data-testid="form"
   >
     <fieldset>
@@ -22,11 +22,13 @@ exports[`<CreateProduct /> should render form with initial state 1`] = `
         for="title"
       >
         Title
-        <textarea
+        <input
           id="title"
           name="title"
           placeholder="Title"
           required=""
+          type="text"
+          value=""
         />
       </label>
       <label

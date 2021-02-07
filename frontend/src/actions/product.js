@@ -74,7 +74,7 @@ export const create = (data, handleOnSuccess) => {
   };
 };
 
-export const update = (data, id, handleOnSuccess) => {
+export const update = (data, id) => {
   return async (dispatch) => {
     //PUT REQUEST
     return api
@@ -86,7 +86,6 @@ export const update = (data, id, handleOnSuccess) => {
             type: ACTION_TYPES.UPDATE,
             payload: { ...data, id },
           });
-          handleOnSuccess();
         },
         (error) => {
           dispatch(alertActions.error(error.toString()));

@@ -7,10 +7,6 @@ export default function useForm(initialState = {}) {
 
     function handleChange(e) {
         let { value, name, type } = e.target;
-        
-        if (type === 'file') {
-            [value] = e.target.files;
-        }
 
         if (type === 'select') {
             value = e.target.value;
@@ -21,6 +17,23 @@ export default function useForm(initialState = {}) {
             [name]: value
         });
     };
+    
+    async function handleImageUpload(e) {
+        const files = e.target.files;
+        const data = new FormData();
+        data.append("file", files[0]);
+        data.append("upload_preset", "farmersspecial");
+    
+        const res = await fetch(
+          "https://api.cloudinary.com/v1_1/dzqeffkmp/image/upload",
+          {
+            method: "POST",
+            body: data,
+          }
+        );
+        const file = await res.json();
+        setValues({ image: file.secure_url });
+      };
 
     const handleSelect = (e) => {
         const roleSelection = e.target.value;
@@ -45,6 +58,7 @@ export default function useForm(initialState = {}) {
         values,
         setValues,
         handleChange,
+        handleImageUpload,
         clearForm,
         setInitialForm,
         handleSelect,

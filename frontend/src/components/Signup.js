@@ -81,7 +81,6 @@ function Signup() {
             value={values.password}
             onChange={handleChange}
             required
-            autoComplete="new-password"
           />
         </label>
         <label htmlFor="role">

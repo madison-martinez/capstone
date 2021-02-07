@@ -43,9 +43,14 @@ exports[`<Home /> should render home page with no user 1`] = `
         class="buttons-section"
       >
         <a
+          href="/signup"
+        >
+          Signup
+        </a>
+        <a
           href="/login"
         >
-          Logout
+          Login
         </a>
       </div>
     </div>

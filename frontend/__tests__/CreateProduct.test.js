@@ -1,32 +1,106 @@
-import { waitFor } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import CreateProduct from '../src/components/CreateProduct';
-import { render, screen, fakeItem } from '../src/utils/testUtils';
+import thunk from "redux-thunk";
+import { act } from "@testing-library/react";
+import configureStore from "redux-mock-store";
+import { rest } from "msw";
+import { setupServer } from "msw/node";
+import moxios from "moxios";
+import userEvent from "@testing-library/user-event";
+import { waitFor } from "@testing-library/react";
+import CreateProduct from "../src/components/CreateProduct";
+import { render, screen } from "../src/utils/testUtils";
+import { ACTION_TYPES, create } from "../src/actions/product";
 
-const item = fakeItem();
+const middleware = [thunk];
+const mockStore = configureStore(middleware);
+const initialState = {
+  product: {
+    list: [],
+  },
+};
 
-describe('<CreateProduct />', () => {
-    it('should render form with initial state', () => {
-        const { container } = render(
-            <CreateProduct productList={[]} />)
-        expect(container).toMatchSnapshot();
+const fakeNewItem = {
+  id: 2,
+  title: "fakeFood",
+  description: "fakeYums",
+  price: 2,
+  image: "food.jpeg",
+};
+
+const mockSuccessFn = jest.fn();
+
+
+const server = setupServer(
+  rest.post(
+    "https://localhost:5001/api/Product/:newProduct",
+    (req, res, ctx) => {
+      return res(ctx.json(fakeNewItem));
+    }
+  )
+);
+
+beforeAll(() => server.listen());
+afterEach(() => server.resetHandlers());
+afterAll(() => server.close());
+
+describe("<CreateProduct />", () => {
+  let store;
+  beforeEach(() => {
+    moxios.install();
+    store = mockStore(initialState);
+  });
+  afterEach(() => {
+    moxios.uninstall();
+  });
+
+  it("should render empty form", () => {
+    const { container } = render(<CreateProduct productList={[]} />);
+    expect(container).toMatchSnapshot();
+  });
+
+  it("handles user inputting a new product", async (done) => {
+    render(<CreateProduct store={store} />);
+    expect(await screen.findByTestId("form")).toBeInTheDocument();
+
+    await act(async () => {
+        userEvent.click(screen.getByPlaceholderText("Upload an image"));
+        await waitFor(() => expect(screen.getByText(fakeNewItem.image).toBeInTheDocument()));
     });
 
-    it('handles state updating', async () => {
-        render(<CreateProduct productList={[item]} />);
+    userEvent.type(screen.getByPlaceholderText("Title"), fakeNewItem.title);
+    userEvent.type(
+      screen.getByPlaceholderText("Description"),
+      fakeNewItem.description
+    );
+    userEvent.type(
+      screen.getByPlaceholderText("Price"),
+      fakeNewItem.price.toString()
+    );
 
-        userEvent.type(
-            screen.getByPlaceholderText('Title'),
-            item.title);
-        userEvent.type(
-            screen.getByPlaceholderText('Description'),
-            item.description
-        );
+    expect(screen.getByDisplayValue(fakeNewItem.title)).toBeInTheDocument();
+    expect(screen.getByText(fakeNewItem.description)).toBeInTheDocument();
 
-        expect(screen.getByText(item.title)).toBeInTheDocument();
-        expect(screen.getByText(item.description)).toBeInTheDocument();
-        await waitFor(() => expect(screen.getByTestId('form')).toBeInTheDocument());
+    userEvent.click(screen.getByText("Submit"));
+
+    moxios.wait(function () {
+      let request = moxios.requests.mostRecent();
+      request.respondWith({
+        status: 200,
+        response: fakeNewItem,
+      });
     });
-
-    //NEED TO TEST SUBMIT BUTTON
+    const expectedActions = [
+      {
+        type: ACTION_TYPES.CREATE,
+        payload: fakeNewItem,
+      }
+    ];
+    return store.dispatch(create(fakeNewItem, mockSuccessFn)).then(async () => {
+      const actualAction = store.getActions();
+      expect(actualAction).toEqual(expectedActions);
+      done();
+      await waitFor(() => expect(mockSuccessFn).toHaveBeenCalledTimes(1));
+    });
+  });
 });
+
+//NEED TO TEST IMAGE UPLOAD TO GET RID OF THE ACT WARNING

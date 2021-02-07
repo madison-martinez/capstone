@@ -10,7 +10,7 @@ const CreateProduct = (props) => {
   const router = useRouter();
   const alert = useSelector((state) => state.alert);
 
-  const { values, handleChange, setValues } = useForm({
+  const { values, handleChange, clearForm, handleImageUpload } = useForm({
     title: "",
     description: "",
     price: 0,
@@ -21,24 +21,7 @@ const CreateProduct = (props) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    props.createProduct(values, handleOnSuccess);
-  };
-
-  const handleImageUpload = async (e) => {
-    const files = e.target.files;
-    const data = new FormData();
-    data.append("file", files[0]);
-    data.append("upload_preset", "farmersspecial");
-
-    const res = await fetch(
-      "https://api.cloudinary.com/v1_1/dzqeffkmp/image/upload",
-      {
-        method: "POST",
-        body: data,
-      }
-    );
-    const file = await res.json();
-    setValues({ image: file.secure_url });
+    await props.createProduct(values, handleOnSuccess);
   };
 
   return (
