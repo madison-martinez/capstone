@@ -14,7 +14,7 @@ export const addToCart = ({
   image,
 }) => {
   const cartProduct = { product, id, price, description, quantity, image };
-  return (dispatch) => {
+  return async (dispatch) => {
     dispatch({
       type: CartActionTypes.ADD_TO_CART,
       payload: cartProduct,
@@ -23,7 +23,7 @@ export const addToCart = ({
 };
 
 export const getCartCount = () => {
-  return (dispatch) => {
+  return async (dispatch) => {
     dispatch({
       type: CartActionTypes.GET_CART_COUNT,
     });

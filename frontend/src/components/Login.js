@@ -37,7 +37,7 @@ function LoginPage({ authUser }) {
     <Form method="post" onSubmit={handleOnSubmit}>
       <fieldset>
         <h2>Login to your account</h2>
-        {alert.message && <div>{alert.message}</div>}
+        {submitted && alert.message && <div>{alert.message}</div>}
         <label htmlFor="username">
           Username
           <input

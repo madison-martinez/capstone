@@ -27,7 +27,7 @@
     "jwt-decode": "^3.1.2",
     "moxios": "^0.4.0",
     "msw": "^0.26.0",
-    "next": "latest",
+    "next": "^10.0.5",
     "next-redux-wrapper": "^6.0.2",
     "node-fetch": "^2.6.1",
     "nprogress": "^0.2.0",
@@ -43,7 +43,7 @@
     "redux-mock-store": "^1.5.4",
     "redux-persist": "^6.0.0",
     "redux-thunk": "^2.3.0",
-    "styled-components": "^5.2.1",
+    "styled-components": "^5.2.0",
     "uid-safe": "^2.1.5",
     "waait": "^1.0.5",
     "web-vitals": "^0.2.4"
@@ -74,6 +74,7 @@
   },
   "devDependencies": {
     "babel-plugin-styled-components": "^1.12.0",
+    "identity-obj-proxy": "^3.0.0",
     "jest": "^26.6.0"
   },
   "jest": {

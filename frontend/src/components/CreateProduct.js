@@ -1,7 +1,7 @@
 import React from "react";
 import { connect, useSelector } from "react-redux";
-import Image from "next/image";
 import { useRouter } from "next/router";
+import axios from "axios";
 import Form from "./styles/FormStyles";
 import useForm from "../utils/useForm";
 import * as actions from "../actions/product";
@@ -10,12 +10,30 @@ const CreateProduct = (props) => {
   const router = useRouter();
   const alert = useSelector((state) => state.alert);
 
-  const { values, handleChange, clearForm, handleImageUpload } = useForm({
+  const { values, handleChange, setValues } = useForm({
     title: "",
     description: "",
     price: 0,
     image: "",
   });
+
+  const handleImageUpload = async (e) => {
+    
+    const files = e.target.files;
+    const data = new FormData();
+    data.append("file", files[0]);
+    data.append("upload_preset", "farmersspecial");
+
+    try {
+      const result = await axios
+        .post("https://api.cloudinary.com/v1_1/dzqeffkmp/image/upload", data);
+      if (result.status === 200) {
+        setValues({ image: result.data.secure_url });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const handleOnSuccess = () => router.push("/marketplace");
 
@@ -35,6 +53,7 @@ const CreateProduct = (props) => {
             name="image"
             placeholder="Upload an image"
             onChange={handleImageUpload}
+            data-testid="image-element"
           />
         </label>
         <label htmlFor="title">
@@ -44,7 +63,7 @@ const CreateProduct = (props) => {
             type="text"
             name="title"
             placeholder="Title"
-            value={values.title}
+            value={values.title || ""}
             onChange={handleChange}
             required
           />
@@ -55,7 +74,7 @@ const CreateProduct = (props) => {
             id="description"
             name="description"
             placeholder="Description"
-            value={values.description}
+            value={values.description || ""}
             onChange={handleChange}
             required
           />
@@ -67,7 +86,7 @@ const CreateProduct = (props) => {
             type="number"
             name="price"
             placeholder="Price"
-            value={values.price}
+            value={values.price || ''}
             onChange={handleChange}
             required
           />
@@ -76,12 +95,12 @@ const CreateProduct = (props) => {
         <button type="submit">Submit</button>
       </fieldset>
 
-      <Image
+      <img
         src="/assets/photo-1560493676-04071c5f467b.jpeg"
         alt="fieldrows"
         layout="responsive"
-        width={200}
-        height={200}
+        width={500}
+        height={500}
       />
     </Form>
   );
