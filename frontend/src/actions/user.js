@@ -17,7 +17,7 @@ function login(username, password, handleOnSuccess) {
   return async (dispatch) => {
     dispatch(request({ username }));
 
-    userService.login(username, password).then(
+    return userService.login(username, password).then(
       (user) => {
         dispatch(success(user));
         handleOnSuccess();

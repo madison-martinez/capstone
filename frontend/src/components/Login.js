@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector, connect } from "react-redux";
-import Image from "next/image";
+import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import useForm from "../utils/useForm";
 import Form from "./styles/FormStyles";
 import { userActions } from "../actions/user";
 import { alertActions } from "../actions/alert";
 
-function LoginPage({ authUser }) {
+function LoginPage() {
   const { values, handleChange, clearForm } = useForm({
     username: "",
     password: "",
@@ -34,7 +33,7 @@ function LoginPage({ authUser }) {
   };
 
   return (
-    <Form method="post" onSubmit={handleOnSubmit}>
+    <Form method="post" onSubmit={handleOnSubmit} data-testid="login-form">
       <fieldset>
         <h2>Login to your account</h2>
         {submitted && alert.message && <div>{alert.message}</div>}
@@ -63,19 +62,14 @@ function LoginPage({ authUser }) {
         <button type="submit">Sign In!</button>
       </fieldset>
 
-      <Image
+      <img
         src="/assets/photo-1464226184884-fa280b87c399.jpeg"
         alt="fieldrows"
-        layout="responsive"
-        width={200}
-        height={200}
+        width={500}
+        height={500}
       />
     </Form>
   );
 }
 
-const mapStateToProps = (state) => ({
-  authUser: state.authentication.user,
-});
-
-export default connect(mapStateToProps)(LoginPage);
+export default LoginPage;

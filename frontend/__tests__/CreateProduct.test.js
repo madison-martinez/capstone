@@ -123,7 +123,7 @@ describe("<CreateProduct />", () => {
 
   it("checks that required fields are filled out", () => {
     render(<CreateProduct store={store} />);
-    userEvent.click(screen.getByText("Submit"));
+    userEvent.click(screen.getByText("Submit"))
     //submit button fires dispatch to create product
     moxios.wait(function () {
       let request = moxios.requests.mostRecent();

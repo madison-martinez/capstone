@@ -32,7 +32,7 @@ export const getCartCount = () => {
 
 export const deleteCartProduct = ({ id, price }) => {
   const deletedItem = { id, price };
-  return (dispatch) => {
+  return async (dispatch) => {
     dispatch({
       type: CartActionTypes.DELETE_CART_PRODUCT,
       payload: deletedItem,
@@ -41,7 +41,7 @@ export const deleteCartProduct = ({ id, price }) => {
 };
 
 export const clearCart = () => {
-  return (dispatch) => {
+  return async (dispatch) => {
     dispatch({
       type: CartActionTypes.CLEAR_CART,
     });

@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Login /> should render empty form 1`] = `
+<div>
+  <form
+    class="FormStyles__Form-sc-1qtbzh2-0 cmkxQl"
+    data-testid="login-form"
+    method="post"
+  >
+    <fieldset>
+      <h2>
+        Login to your account
+      </h2>
+      <label
+        for="username"
+      >
+        Username
+        <input
+          name="username"
+          placeholder="Username"
+          type="username"
+          value=""
+        />
+      </label>
+      <label
+        for="password"
+      >
+        Password
+        <input
+          autocomplete="new-password"
+          name="password"
+          placeholder="Password"
+          type="password"
+          value=""
+        />
+      </label>
+      <button
+        type="submit"
+      >
+        Sign In!
+      </button>
+    </fieldset>
+    <img
+      alt="fieldrows"
+      height="500"
+      src="/assets/photo-1464226184884-fa280b87c399.jpeg"
+      width="500"
+    />
+  </form>
+</div>
+`;

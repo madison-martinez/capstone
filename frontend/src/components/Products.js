@@ -13,7 +13,7 @@ export const Products = ({ productList, fetchAllProducts }) => {
     dispatch(fetchAllProducts);
   }, [fetchAllProducts, dispatch]);
 
-  //get current products on page
+  //get current products on page to set pagination
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
   const currentProducts = productList.slice(
@@ -23,8 +23,22 @@ export const Products = ({ productList, fetchAllProducts }) => {
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
+  const [searchValue, setSearchValue] = useState();
+  const handleChangeFilter = (e) => {
+    console.log('hi there', e.target.value);
+    setSearchValue(e.target.value)
+  };
+
+  const filterProducts = productList.filter(product => {
+    return product.title.includes(searchValue);
+  });
+  console.log(filterProducts)
+
+
   return (
     <>
+    <label htmlFor="search">Search for Product</label>
+    <input type="text" value={searchValue} onChange={handleChangeFilter} />
       <Pagination
         productsPerPage={productsPerPage}
         totalProducts={productList.length}
