@@ -29,7 +29,7 @@ const GalleryStyles = styled.div`
 `;
 
 function Home({ authUser }) {
-  console.log(authUser)
+
   return (
     <GalleryStyles>
       <Image
