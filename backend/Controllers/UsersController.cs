@@ -105,31 +105,5 @@ namespace FarmersSpecial.Controllers
             return Ok(model);
         }
 
-        [HttpPut("{id}")]
-        public IActionResult Update(int id, [FromBody]UpdateModel model)
-        {
-            // map model to entity and set id
-            var user = _mapper.Map<User>(model);
-            user.Id = id;
-
-            try
-            {
-                // update user 
-                _userService.Update(user, model.Password);
-                return Ok();
-            }
-            catch (AppException ex)
-            {
-                // return error message if there was an exception
-                return BadRequest(new { message = ex.Message });
-            }
-        }
-
-        [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
-        {
-            _userService.Delete(id);
-            return Ok();
-        }
     }
 }

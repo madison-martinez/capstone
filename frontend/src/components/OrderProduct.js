@@ -1,4 +1,4 @@
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 import formatMoney from "../utils/formatMoney";
 
@@ -17,7 +17,9 @@ const OrderItemStyles = styled.div`
   }
 `;
 
-function OrderProduct({ orderProducts, price }) {
+function OrderProduct() {
+  const orderProducts = useSelector(state => state.order.products)
+
   let orders = [];
   for (let i = 0; i < orderProducts.length; i++) {
     orders.push(
@@ -34,9 +36,4 @@ function OrderProduct({ orderProducts, price }) {
   return <OrderList>{orders}</OrderList>;
 }
 
-const mapStateToProps = (state) => ({
-  orderProducts: state.order.products,
-  price: state.order.products,
-});
-
-export default connect(mapStateToProps)(OrderProduct);
+export default OrderProduct;

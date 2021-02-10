@@ -1,26 +1,23 @@
 import React, { useEffect } from "react";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import Form from "./styles/FormStyles";
 import * as actions from "../actions/product";
 import useForm from "../utils/useForm";
 
-const UpdateProduct = ({
-  id,
-  productList,
-  updateProduct,
-  fetchAllProducts,
-}) => {
+const UpdateProduct = ({ id }) => {
   const { values, setValues, handleChange } = useForm({
     title: "",
     description: "",
     price: 0,
   });
   
+  const dispatch = useDispatch();
+  const productList = useSelector(state => state.product.list)
   const router = useRouter();
 
   useEffect(() => {
-    fetchAllProducts();
+    dispatch(actions.fetchAll());
     setValues({ ...productList.find((item) => item.id === parseInt(id)) });
   }, []);
 
@@ -28,13 +25,13 @@ const UpdateProduct = ({
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    updateProduct(id, values, handleOnSuccess);
+    dispatch(actions.update(id, values, handleOnSuccess));
   };
 
   return (
       <Form
         data-testid="form"
-        onSubmit={handleSubmit} //TODO POST INFO TO API AND DB
+        onSubmit={handleSubmit}
       >
         <fieldset>
           <label htmlFor="title">
@@ -78,11 +75,4 @@ const UpdateProduct = ({
   );
 };
 
-const mapStateToProps = (state) => ({ productList: state.product.list });
-
-const mapActionsToProps = {
-  updateProduct: actions.update,
-  fetchAllProducts: actions.fetchAll,
-};
-
-export default connect(mapStateToProps, mapActionsToProps)(UpdateProduct);
+export default UpdateProduct;

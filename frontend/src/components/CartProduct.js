@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import styled from "styled-components";
-import { connect } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import formatMoney from "../utils/formatMoney";
 import * as actions from "../actions/cart";
 
@@ -29,11 +29,11 @@ const CartList = styled.div`
   }
 `;
 
-function CartProduct({
-  cartCount,
-  cartProducts,
-  deleteCartProduct,
-}) {
+function CartProduct() {
+  const cartCount = useSelector(state => state.cart.cartCount)
+  const cartProducts = useSelector(state => state.cart.cartProducts)
+  const dispatch = useDispatch();
+
   let items = [];
   for (let i = 0; i < cartProducts.length; i++) {
     items.push(
@@ -53,10 +53,10 @@ function CartProduct({
           <button
             type="button"
             onClick={() => {
-              deleteCartProduct({
+              dispatch(actions.deleteCartProduct({
                 id: cartProducts[i].id,
-                price: cartProducts[i].price,
-              });
+                price: cartProducts[i].price
+              }));
             }}
           >
             Delete
@@ -73,13 +73,4 @@ function CartProduct({
   );
 }
 
-const mapStateToProps = (state) => ({
-  cartCount: state.cart.cartCount,
-  cartProducts: state.cart.cartProducts,
-});
-
-const mapActionsToProps = {
-  deleteCartProduct: actions.deleteCartProduct,
-};
-
-export default connect(mapStateToProps, mapActionsToProps)(CartProduct);
+export default CartProduct;

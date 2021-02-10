@@ -61,7 +61,7 @@ function LoginPage() {
         </label>
         <button type="submit">Sign In!</button>
       </fieldset>
-
+      
       <img
         src="/assets/photo-1464226184884-fa280b87c399.jpeg"
         alt="fieldrows"

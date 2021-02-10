@@ -1,7 +1,9 @@
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 import OrderProduct from "./OrderProduct";
 
-function Order({ orderProducts }) {
+function Order() {
+  const orderProducts = useSelector((state) => state.order.products);
+
   return (
     <>
       <h2> Previous Orders </h2>
@@ -11,8 +13,4 @@ function Order({ orderProducts }) {
   );
 }
 
-const mapStateToProps = (state) => ({
-  orderProducts: state.order.products,
-});
-
-export default connect(mapStateToProps)(Order);
+export default Order;

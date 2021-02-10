@@ -1,5 +1,5 @@
 import React from "react";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 
 const Counter = styled.div`
@@ -11,12 +11,16 @@ const Counter = styled.div`
   display: block;
 `;
 
-const CartCounter = ({ cartCount }) => {
-  return <>{cartCount > 0 && <Counter>{cartCount}</Counter>}</>;
+const CartCounter = () => {
+  const cartCount = useSelector(state => state.cart.cartCount)
+  
+  return (
+    <>
+    {cartCount > 0 && <Counter>{cartCount}</Counter>}
+    </>
+  ) 
 };
 
-const mapStateToProps = (state) => ({
-  cartCount: state.cart.cartCount,
-});
 
-export default connect(mapStateToProps)(CartCounter);
+
+export default CartCounter;

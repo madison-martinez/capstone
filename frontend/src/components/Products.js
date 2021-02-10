@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { connect, useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import * as actions from "../actions/product";
 import Product from "./Product";
 import Pagination from "./Pagination";
 
-export const Products = ({ productList, fetchAllProducts }) => {
+export const Products = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [productsPerPage] = useState(6);
   const dispatch = useDispatch();
+  const productList = useSelector(state => state.product.list)
 
   useEffect(() => {
-    dispatch(fetchAllProducts);
-  }, [fetchAllProducts, dispatch]);
+    dispatch(actions.fetchAll());
+  }, [dispatch]);
 
   //get current products on page to set pagination
   const indexOfLastProduct = currentPage * productsPerPage;
@@ -49,10 +50,4 @@ export const Products = ({ productList, fetchAllProducts }) => {
   );
 };
 
-const mapStateToProps = (state) => ({ productList: state.product.list });
-
-const mapActionsToProps = {
-  fetchAllProducts: actions.fetchAll,
-};
-
-export default connect(mapStateToProps, mapActionsToProps)(Products);
+export default Products;
