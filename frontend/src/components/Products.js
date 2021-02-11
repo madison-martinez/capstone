@@ -41,11 +41,11 @@ export const Products = () => {
   //searchbox 
   const [searchValue, setSearchValue] = useState();
   const handleChangeFilter = (e) => {
-    setSearchValue(e.target.value);
+    setSearchValue((e.target.value).toLowerCase());
   };
 
   const filteredProducts = productList.filter((product) => {
-    return product.title.toString().toLowerCase().includes(searchValue.toLowerCase());
+    return product.title.toString().toLowerCase().includes(searchValue);
   });
   //reset pagination to new filtered array
   const currentFilteredProducts = filteredProducts.slice(
