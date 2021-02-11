@@ -30,8 +30,8 @@ const CartList = styled.div`
 `;
 
 function CartProduct() {
-  const cartCount = useSelector(state => state.cart.cartCount)
-  const cartProducts = useSelector(state => state.cart.cartProducts)
+  const cartCount = useSelector((state) => state.cart.cartCount);
+  const cartProducts = useSelector((state) => state.cart.cartProducts);
   const dispatch = useDispatch();
 
   let items = [];
@@ -53,10 +53,12 @@ function CartProduct() {
           <button
             type="button"
             onClick={() => {
-              dispatch(actions.deleteCartProduct({
-                id: cartProducts[i].id,
-                price: cartProducts[i].price
-              }));
+              dispatch(
+                actions.deleteCartProduct({
+                  id: cartProducts[i].id,
+                  price: cartProducts[i].price,
+                })
+              );
             }}
           >
             Delete

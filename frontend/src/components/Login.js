@@ -56,12 +56,11 @@ function LoginPage() {
             value={values.password}
             onChange={handleChange}
             autoComplete="new-password"
-
           />
         </label>
         <button type="submit">Sign In!</button>
       </fieldset>
-      
+
       <img
         src="/assets/photo-1464226184884-fa280b87c399.jpeg"
         alt="fieldrows"

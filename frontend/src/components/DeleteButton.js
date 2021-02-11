@@ -4,7 +4,7 @@ import * as actions from "../actions/product";
 
 export const DeleteButton = ({ id }) => {
   const dispatch = useDispatch();
- 
+
   return (
     <button
       type="button"

@@ -18,15 +18,16 @@ const CreateProduct = (props) => {
   });
 
   const handleImageUpload = async (e) => {
-    
     const files = e.target.files;
     const data = new FormData();
     data.append("file", files[0]);
     data.append("upload_preset", "farmersspecial");
 
     try {
-      const result = await axios
-        .post("https://api.cloudinary.com/v1_1/dzqeffkmp/image/upload", data);
+      const result = await axios.post(
+        "https://api.cloudinary.com/v1_1/dzqeffkmp/image/upload",
+        data
+      );
       if (result.status === 200) {
         setValues({ image: result.data.secure_url });
       }
@@ -86,7 +87,7 @@ const CreateProduct = (props) => {
             type="number"
             name="price"
             placeholder="Price"
-            value={values.price || ''}
+            value={values.price || ""}
             onChange={handleChange}
             required
           />

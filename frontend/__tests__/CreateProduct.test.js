@@ -84,7 +84,6 @@ describe("<CreateProduct />", () => {
     expect(input.files[0]).toStrictEqual(file);
     expect(input.files).toHaveLength(1);
 
-
     //user types title, description, and price
     userEvent.type(screen.getByPlaceholderText("Title"), fakeNewItem.title);
     userEvent.type(
@@ -123,7 +122,7 @@ describe("<CreateProduct />", () => {
 
   it("checks that required fields are filled out", () => {
     render(<CreateProduct store={store} />);
-    userEvent.click(screen.getByText("Submit"))
+    userEvent.click(screen.getByText("Submit"));
     //submit button fires dispatch to create product
     moxios.wait(function () {
       let request = moxios.requests.mostRecent();
@@ -142,10 +141,12 @@ describe("<CreateProduct />", () => {
         message: "Error: Request failed with status code 400",
       },
     ];
-    return store.dispatch(create(fakeItemMissingFields, mockSuccessFn)).then(async () => {
-      const actualAction = store.getActions();
-      expect(actualAction).toEqual(expectedActions);
-      await waitFor(() => expect(mockSuccessFn).toHaveBeenCalledTimes(0));
-    });
-  })
+    return store
+      .dispatch(create(fakeItemMissingFields, mockSuccessFn))
+      .then(async () => {
+        const actualAction = store.getActions();
+        expect(actualAction).toEqual(expectedActions);
+        await waitFor(() => expect(mockSuccessFn).toHaveBeenCalledTimes(0));
+      });
+  });
 });

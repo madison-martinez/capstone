@@ -1,21 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import styled from 'styled-components';
+import styled from "styled-components";
 import * as actions from "../actions/product";
 import Product from "./Product";
 import Pagination from "./Pagination";
 
 const SearchboxStyles = styled.div`
-label {
-  display: block;
-  font-size: 1.5rem;
-}
-input {
-  display: block;
-  margin-top: 0.5rem;
-  padding: 0.5rem;
-  font-size: 1rem;
-}
+  label {
+    display: block;
+    font-size: 1.5rem;
+  }
+  input {
+    display: block;
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+    font-size: 1rem;
+  }
 `;
 
 export const Products = () => {
@@ -38,14 +38,17 @@ export const Products = () => {
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-  //searchbox 
+  //searchbox
   const [searchValue, setSearchValue] = useState();
   const handleChangeFilter = (e) => {
-    setSearchValue((e.target.value).toLowerCase());
+    setSearchValue(e.target.value.toLowerCase());
   };
 
   const filteredProducts = productList.filter((product) => {
-    return product.title.toString().toLowerCase().includes(searchValue.toLowerCase());
+    return product.title
+      .toString()
+      .toLowerCase()
+      .includes(searchValue.toLowerCase());
   });
   //reset pagination to new filtered array
   const currentFilteredProducts = filteredProducts.slice(
@@ -53,14 +56,19 @@ export const Products = () => {
     indexOfLastProduct
   );
 
-
   return (
     <>
-    <SearchboxStyles>
-      <label htmlFor="search">Looking for something? 
-      <input type="text" value={searchValue} onChange={handleChangeFilter} placeholder="Search for an item" />
-      </label>
-    </SearchboxStyles>
+      <SearchboxStyles>
+        <label htmlFor="search">
+          Looking for something?
+          <input
+            type="text"
+            value={searchValue}
+            onChange={handleChangeFilter}
+            placeholder="Search for an item"
+          />
+        </label>
+      </SearchboxStyles>
       {filteredProducts.length > 0 ? (
         <>
           <Pagination

@@ -24,7 +24,6 @@ const SingleProductStyles = styled.div`
 `;
 
 const SingleProduct = ({ id, productList, singleProduct }) => {
-
   useEffect(() => {
     singleProduct(id);
   }, [id, singleProduct]);

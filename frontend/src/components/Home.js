@@ -29,7 +29,6 @@ const GalleryStyles = styled.div`
 `;
 
 function Home({ authUser }) {
-
   return (
     <GalleryStyles>
       <Image

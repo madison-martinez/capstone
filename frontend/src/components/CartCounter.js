@@ -12,15 +12,9 @@ const Counter = styled.div`
 `;
 
 const CartCounter = () => {
-  const cartCount = useSelector(state => state.cart.cartCount)
-  
-  return (
-    <>
-    {cartCount > 0 && <Counter>{cartCount}</Counter>}
-    </>
-  ) 
+  const cartCount = useSelector((state) => state.cart.cartCount);
+
+  return <>{cartCount > 0 && <Counter>{cartCount}</Counter>}</>;
 };
-
-
 
 export default CartCounter;

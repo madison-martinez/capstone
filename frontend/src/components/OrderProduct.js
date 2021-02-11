@@ -18,7 +18,7 @@ const OrderItemStyles = styled.div`
 `;
 
 function OrderProduct() {
-  const orderProducts = useSelector(state => state.order.products)
+  const orderProducts = useSelector((state) => state.order.products);
 
   let orders = [];
   for (let i = 0; i < orderProducts.length; i++) {

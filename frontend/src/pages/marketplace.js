@@ -1,6 +1,6 @@
 import Products from '../components/Products';
 
-function Marketplace({ products }) {
+function Marketplace() {
     return (
         <Products />
     )

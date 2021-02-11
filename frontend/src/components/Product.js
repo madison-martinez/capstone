@@ -51,11 +51,11 @@ const DetailsStyles = styled.div`
 `;
 
 function Product({ products }) {
-  const user = useSelector(state => state.authentication.user);
+  const user = useSelector((state) => state.authentication.user);
   const dispatch = useDispatch();
 
   let items = [];
-  
+
   for (let i = 0; i < products.length; i++) {
     items.push(
       <ProductStyles key={products[i].id}>
@@ -105,14 +105,16 @@ function Product({ products }) {
               type="button"
               id={products[i].id}
               onClick={() =>
-                dispatch(actions.addToCart({
-                  product: products[i].title,
-                  id: [i],
-                  price: products[i].price,
-                  description: products[i].description,
-                  quantity: 0,
-                  image: products[i].image,
-                }))
+                dispatch(
+                  actions.addToCart({
+                    product: products[i].title,
+                    id: [i],
+                    price: products[i].price,
+                    description: products[i].description,
+                    quantity: 0,
+                    image: products[i].image,
+                  })
+                )
               }
             >
               <FontAwesomeIcon icon={faShoppingCart} />

@@ -52,8 +52,6 @@ namespace FarmersSpecial.Controllers
         }
 
         // POST: /api/Product
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         
         public async Task<ActionResult<Product>> CreateProduct([Bind("Id,Title,Description,Price")] Product product)
@@ -67,8 +65,6 @@ namespace FarmersSpecial.Controllers
         }
 
         // Put: Product/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPut("{id}")]
        
         public async Task<ActionResult<Product>> EditProduct(int id, [Bind("Id,Title,Description,Price")] Product product)

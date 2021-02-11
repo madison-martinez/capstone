@@ -69,7 +69,10 @@ describe("<Login />", () => {
           user,
         },
       ];
-      return store.dispatch(userActions.login(user.username, user.password, mockSuccessFn))
+      return store
+        .dispatch(
+          userActions.login(user.username, user.password, mockSuccessFn)
+        )
         .then(async () => {
           const actualActions = store.getActions();
           expect(actualActions).toEqual(expectedActions);
@@ -95,7 +98,10 @@ describe("<Login />", () => {
         },
       ];
 
-      return store.dispatch(userActions.login(user.username, user.password, mockSuccessFn))
+      return store
+        .dispatch(
+          userActions.login(user.username, user.password, mockSuccessFn)
+        )
         .then(async () => {
           const actualActions = store.getActions();
           expect(actualActions).toEqual(expectedActions);
@@ -136,8 +142,7 @@ describe("<Login />", () => {
         },
       ];
 
-      return store.dispatch(userActions.login())
-      .then(async () => {
+      return store.dispatch(userActions.login()).then(async () => {
         const actualActions = store.getActions();
         expect(actualActions).toEqual(expectedActions);
       });
