@@ -33,7 +33,6 @@ const Pagination = ({ productsPerPage, totalProducts, paginate }) => {
           </span>
         </Link>
       ))}
-
       {pageNumbers.length > 1 && <span>→</span>}
     </PaginationStyles>
   );

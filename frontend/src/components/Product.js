@@ -1,14 +1,14 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import DeleteButton from "./DeleteButton";
 import ProductStyles from "./styles/ProductStyles";
 import formatMoney from "../utils/formatMoney";
-import { addToCart, getCartCount } from "../actions/cart";
+import * as actions from "../actions/cart";
 
 const ProductsList = styled.div`
   display: grid;
@@ -50,8 +50,12 @@ const DetailsStyles = styled.div`
   font-size: 1.2rem;
 `;
 
-function Product({ products, addToCart, getCartCount, cartProps, user }) {
+function Product({ products }) {
+  const user = useSelector(state => state.authentication.user);
+  const dispatch = useDispatch();
+
   let items = [];
+  
   for (let i = 0; i < products.length; i++) {
     items.push(
       <ProductStyles key={products[i].id}>
@@ -101,14 +105,14 @@ function Product({ products, addToCart, getCartCount, cartProps, user }) {
               type="button"
               id={products[i].id}
               onClick={() =>
-                addToCart({
+                dispatch(actions.addToCart({
                   product: products[i].title,
                   id: [i],
                   price: products[i].price,
                   description: products[i].description,
                   quantity: 0,
                   image: products[i].image,
-                })
+                }))
               }
             >
               <FontAwesomeIcon icon={faShoppingCart} />
@@ -121,9 +125,4 @@ function Product({ products, addToCart, getCartCount, cartProps, user }) {
   return <ProductsList>{items}</ProductsList>;
 }
 
-const mapStateToProps = (state) => ({
-  cartProps: state.cart,
-  user: state.authentication.user,
-});
-
-export default connect(mapStateToProps, { addToCart, getCartCount })(Product);
+export default Product;
