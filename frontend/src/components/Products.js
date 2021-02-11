@@ -45,7 +45,7 @@ export const Products = () => {
   };
 
   const filteredProducts = productList.filter((product) => {
-    return product.title.toString().toLowerCase().includes(searchValue);
+    return product.title.toString().toLowerCase().includes(searchValue.toLowerCase());
   });
   //reset pagination to new filtered array
   const currentFilteredProducts = filteredProducts.slice(
