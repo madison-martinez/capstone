@@ -24,7 +24,7 @@ function Signup() {
     dispatch(userActions.logout());
   }, []);
 
-  const handleOnSuccess = () => router.push("/");
+  const handleOnSuccess = () => router.push("/login");
   const handleOnSubmit = async (e) => {
     e.preventDefault();
     setSubmitted(true);

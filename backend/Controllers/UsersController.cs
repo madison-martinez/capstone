@@ -89,14 +89,6 @@ namespace FarmersSpecial.Controllers
             }
         }
 
-        [HttpGet]
-        public IActionResult GetAll()
-        {
-            var users = _userService.GetAll();
-            var model = _mapper.Map<IList<UserModel>>(users);
-            return Ok(model);
-        }
-
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {

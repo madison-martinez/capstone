@@ -46,6 +46,26 @@ namespace FarmersSpecial.Migrations
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("FarmersSpecial.Models.Order", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("OrderItems")
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("Total")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Orders");
+                });
+
             modelBuilder.Entity("FarmersSpecial.Models.Product", b =>
                 {
                     b.Property<int>("Id")

@@ -10,7 +10,6 @@ namespace FarmersSpecial.Helpers
         {
             CreateMap<User, UserModel>();
             CreateMap<RegisterModel, User>();
-            CreateMap<UpdateModel, User>();
         }
     }
 }

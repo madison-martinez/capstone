@@ -1,5 +1,5 @@
 import React from "react";
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 import styled from "styled-components";
 import formatMoney from "../utils/formatMoney";
 import CartProduct from "./CartProduct";
@@ -25,6 +25,8 @@ const PlaceOrderButton = styled.button`
 `;
 
 function Cart({ cartProducts, totalPrice, placeOrder, clearCart }) {
+  const user = useSelector(state => state.authentication.user);
+  
   return (
     <>
       {!cartProducts.length && <h1>Your cart looks pretty empty.</h1>}
@@ -38,6 +40,7 @@ function Cart({ cartProducts, totalPrice, placeOrder, clearCart }) {
           placeOrder({
             products: cartProducts,
             price: totalPrice,
+            userId: user.id
           });
           clearCart();
         }}
