@@ -20,7 +20,10 @@ const PlaceOrderButton = styled.button`
     color: ${(props) => props.theme.darkGreen};
   }
   :disabled {
-    color: red;
+    cursor: default;
+    color: ${(props) => props.theme.offWhite};
+    background-color: ${(props) => props.theme.lightGray};
+
   }
 `;
 
@@ -32,7 +35,7 @@ function Cart({ cartProducts, totalPrice, placeOrder, clearCart }) {
       {!cartProducts.length && <h1>Your cart looks pretty empty.</h1>}
       <CartProduct />
       <h2>Your total is: {formatMoney(totalPrice)}</h2>
-      <button
+      <PlaceOrderButton
         disabled={cartProducts.length === 0}
         type="button"
         data-testid="order-button"
@@ -46,7 +49,7 @@ function Cart({ cartProducts, totalPrice, placeOrder, clearCart }) {
         }}
       >
         Place Order
-      </button>
+      </PlaceOrderButton>
     </>
   );
 }
