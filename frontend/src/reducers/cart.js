@@ -26,7 +26,7 @@ export function cart(state = initialState, action) {
         totalPrice: state.totalPrice - action.payload.price,
         cartProducts: state.cartProducts.filter(
           (item) => item.id !== action.payload.id
-        ),
+        )
       };
     case CartActionTypes.CLEAR_CART:
       return {

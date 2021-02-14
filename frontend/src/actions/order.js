@@ -1,6 +1,3 @@
-import axios from "axios";
-
-const baseUrl = "https://localhost:5001/api/Order";
 
 export const OrderActionTypes = {
   PLACE_ORDER: "PLACE_ORDER",

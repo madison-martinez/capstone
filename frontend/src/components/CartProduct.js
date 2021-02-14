@@ -51,12 +51,12 @@ function CartProduct() {
           <p>{cartProducts[i].description}</p>
           <p>{formatMoney(cartProducts[i].price)}</p>
           <button
-            type="button"
+          type="button"
             onClick={() => {
               dispatch(
                 actions.deleteCartProduct({
                   id: cartProducts[i].id,
-                  price: cartProducts[i].price,
+                  price: cartProducts[i].price
                 })
               );
             }}

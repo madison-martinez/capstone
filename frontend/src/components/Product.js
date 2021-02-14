@@ -108,7 +108,7 @@ function Product({ products }) {
                 dispatch(
                   actions.addToCart({
                     product: products[i].title,
-                    id: i,
+                    id: [i],
                     price: products[i].price,
                     description: products[i].description,
                     image: products[i].image,

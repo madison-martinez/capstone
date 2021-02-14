@@ -1,10 +1,10 @@
 import React from "react";
-import { connect, useSelector } from "react-redux";
+import { connect, useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 import formatMoney from "../utils/formatMoney";
 import CartProduct from "./CartProduct";
-import { placeOrder } from "../actions/order";
-import { clearCart } from "../actions/cart";
+import * as orderActions from "../actions/order";
+import * as cartActions from "../actions/cart";
 
 const PlaceOrderButton = styled.button`
   background: ${(props) => props.theme.darkGreen};
@@ -26,8 +26,10 @@ const PlaceOrderButton = styled.button`
   }
 `;
 
-function Cart({ cartProducts, totalPrice, placeOrder, clearCart }) {
-  const user = useSelector((state) => state.authentication.user);
+function Cart() {
+  const cartProducts = useSelector((state) => state.cart.cartProducts);
+  const totalPrice = useSelector((state) => state.cart.totalPrice);
+  const dispatch = useDispatch();
 
   return (
     <>
@@ -39,12 +41,13 @@ function Cart({ cartProducts, totalPrice, placeOrder, clearCart }) {
         type="button"
         data-testid="order-button"
         onClick={() => {
-          placeOrder({
-            products: cartProducts,
-            price: totalPrice,
-            userId: user.id,
-          });
-          clearCart();
+          dispatch(
+            orderActions.placeOrder({
+              products: cartProducts,
+              price: totalPrice,
+            })
+          );
+          dispatch(cartActions.clearCart());
         }}
       >
         Place Order
@@ -53,9 +56,4 @@ function Cart({ cartProducts, totalPrice, placeOrder, clearCart }) {
   );
 }
 
-const mapStateToProps = (state) => ({
-  totalPrice: state.cart.totalPrice,
-  cartProducts: state.cart.cartProducts,
-});
-
-export default connect(mapStateToProps, { placeOrder, clearCart })(Cart);
+export default Cart;
