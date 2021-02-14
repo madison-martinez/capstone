@@ -23,8 +23,8 @@ const StyledPage = styled.div`
 const InnerPage = styled.div`
   max-width: ${(props) => props.theme.maxWidth};
   margin: 0 auto;
-  padding: 2.5rem;
   margin-bottom: 1rem;
+  padding: 2.5rem;
 `;
 
 const GlobalStyles = createGlobalStyle`
@@ -35,15 +35,15 @@ const GlobalStyles = createGlobalStyle`
         box-sizing: inherit;
     }
     body {
-        padding: 0;
-        margin: 0;
-        font-size: 1rem;
-        font-family: 'Josefin Slab', serif;
+      font-size: 1rem;
+      font-family: 'Josefin Slab', serif;
+      margin: 0;
+      padding: 0;
     }
     a {
-        text-decoration: none;
-        font-family: 'Amatic SC', cursive;
-        color: ${theme.darkGreen};
+      font-family: 'Amatic SC', cursive;
+      text-decoration: none;
+      color: ${theme.darkGreen};
     }
 `;
 

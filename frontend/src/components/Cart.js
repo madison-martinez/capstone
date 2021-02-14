@@ -7,13 +7,13 @@ import { placeOrder } from "../actions/order";
 import { clearCart } from "../actions/cart";
 
 const PlaceOrderButton = styled.button`
-  margin-bottom: 2rem;
-  font-family: "Josefin Slab", serif;
-  font-size: 1.2rem;
   background: ${(props) => props.theme.darkGreen};
   color: ${(props) => props.theme.offWhite};
-  padding: 0.5rem 1rem;
+  font-family: "Josefin Slab", serif;
+  font-size: 1.2rem;
   border: none;
+  margin-bottom: 2rem;
+  padding: 0.5rem 1rem;
   :hover {
     cursor: pointer;
     background-color: ${(props) => props.theme.offWhite};
@@ -21,15 +21,14 @@ const PlaceOrderButton = styled.button`
   }
   :disabled {
     cursor: default;
-    color: ${(props) => props.theme.offWhite};
     background-color: ${(props) => props.theme.lightGray};
-
+    color: ${(props) => props.theme.offWhite};
   }
 `;
 
 function Cart({ cartProducts, totalPrice, placeOrder, clearCart }) {
-  const user = useSelector(state => state.authentication.user);
-  
+  const user = useSelector((state) => state.authentication.user);
+
   return (
     <>
       {!cartProducts.length && <h1>Your cart looks pretty empty.</h1>}
@@ -43,7 +42,7 @@ function Cart({ cartProducts, totalPrice, placeOrder, clearCart }) {
           placeOrder({
             products: cartProducts,
             price: totalPrice,
-            userId: user.id
+            userId: user.id,
           });
           clearCart();
         }}

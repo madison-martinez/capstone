@@ -49,13 +49,14 @@ function register(user, handleOnSuccess) {
   return async (dispatch) => {
     dispatch(request(user));
 
-    userService.register(user).then(
+    return userService.register(user).then(
       (user) => {
         dispatch(success(user));
         handleOnSuccess();
       },
       (error) => {
         dispatch(failure(error.toString()));
+        dispatch(alertActions.error(error.toString()));
       }
     );
   };

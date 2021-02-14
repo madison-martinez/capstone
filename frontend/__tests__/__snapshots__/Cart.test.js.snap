@@ -18,6 +18,7 @@ exports[`< Cart /> should display empty cart when no items in state 1`] = `
     $0.00
   </h2>
   <button
+    class="Cart__PlaceOrderButton-sc-1ferkhj-0 hmgWHF"
     data-testid="order-button"
     disabled=""
     type="button"
