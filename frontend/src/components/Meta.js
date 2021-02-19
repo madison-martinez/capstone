@@ -9,8 +9,6 @@ const Meta = () => (
       href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Josefin+Slab:wght@500&display=swap"
       rel="stylesheet"
     />
-    {/* TO-DO<link rel="shortcut icon" href="" /> ADD A FAVICON TO IMAGES AND IMPORT HERE TO */}
-    {/* <link rel="stylesheet" type="text/css" href="" /> */}
     <title>Farmer's Special</title>
   </Head>
 );

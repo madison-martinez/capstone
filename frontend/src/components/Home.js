@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Image from "next/image";
 import Link from "next/link";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 
 const GalleryStyles = styled.div`
   display: grid;
@@ -28,7 +28,8 @@ const GalleryStyles = styled.div`
   }
 `;
 
-function Home({ authUser }) {
+function Home() {
+  const authUser = useSelector(state => state.authentication.user)
 
   return (
     <GalleryStyles>
@@ -91,8 +92,4 @@ function Home({ authUser }) {
   );
 }
 
-const mapStateToProps = (state) => ({
-  authUser: state.authentication.user,
-});
-
-export default connect(mapStateToProps)(Home);
+export default Home;

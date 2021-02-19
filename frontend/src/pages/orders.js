@@ -1,9 +1,7 @@
 import Order from "../components/Order";
 
 function OrderPage() {
-    return (
-        <Order />
-    )
+    return <Order />
 };
 
 export default OrderPage;

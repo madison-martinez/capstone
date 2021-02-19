@@ -50,7 +50,6 @@ export const fetchById = (id) => {
 
 export const create = (data, handleOnSuccess) => {
   return async (dispatch) => {
-    console.log(data.price)
     if (parseInt(data.price) < 1.00 || parseInt(data.price) > 10000) {
       const error = "Price must be between $1.00 and $10,000";
       return dispatch(alertActions.error(error));

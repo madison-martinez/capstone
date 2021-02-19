@@ -13,4 +13,4 @@ export function order(state = initialState, action) {
     default:
       return state;
   }
-}
+};

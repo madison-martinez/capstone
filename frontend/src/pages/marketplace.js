@@ -1,9 +1,7 @@
 import Products from '../components/Products';
 
 function Marketplace() {
-    return (
-        <Products />
-    )
+    return <Products />
 };
 
 export default Marketplace;

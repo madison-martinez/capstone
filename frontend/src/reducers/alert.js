@@ -17,4 +17,4 @@ export function alert(state = {}, action) {
     default:
       return state;
   }
-}
+};

@@ -38,4 +38,4 @@ export function cart(state = initialState, action) {
     default:
       return state;
   }
-}
+};

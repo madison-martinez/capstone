@@ -8,4 +8,4 @@ function Product({ query }) {
         </div>
     )
 };
-export default (Product);
+export default Product;

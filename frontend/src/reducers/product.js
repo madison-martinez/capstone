@@ -2,7 +2,7 @@ import { ACTION_TYPES } from '../actions/product';
 
 export const initialState = {
     list: []
-}
+};
 
 export const product = (state = initialState, action) => {
     switch (action.type) {

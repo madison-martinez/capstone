@@ -11,4 +11,4 @@ export function registration(state = {}, action) {
     default:
       return state;
   }
-}
+};

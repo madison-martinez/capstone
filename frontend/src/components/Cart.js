@@ -1,5 +1,5 @@
 import React from "react";
-import { connect, useSelector, useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 import formatMoney from "../utils/formatMoney";
 import CartProduct from "./CartProduct";

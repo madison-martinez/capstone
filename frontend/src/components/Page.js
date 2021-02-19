@@ -61,4 +61,4 @@ export default class Page extends Component {
       </ThemeProvider>
     );
   }
-}
+};

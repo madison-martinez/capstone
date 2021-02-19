@@ -23,4 +23,4 @@ export function authentication(state = initialState, action) {
     default:
       return state;
   }
-}
+};
