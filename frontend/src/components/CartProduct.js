@@ -69,7 +69,7 @@ function CartProduct() {
   }
   return (
     <>
-      <h3>You have {cartCount} items in your cart!</h3>
+      <h3>You have {cartCount} {cartCount > 1 ? 'items' : 'item'} in your cart!</h3>
       <CartList>{items}</CartList>
     </>
   );

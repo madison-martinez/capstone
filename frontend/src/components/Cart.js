@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
+import Link from "next/link";
 import formatMoney from "../utils/formatMoney";
 import CartProduct from "./CartProduct";
 import * as orderActions from "../actions/order";
@@ -26,33 +27,59 @@ const PlaceOrderButton = styled.button`
   }
 `;
 
+const CartStyles = styled.div`
+  a {
+    font-size: 2rem;
+    &:hover {
+      color:  ${(props) => props.theme.blue};
+    }
+    
+  }
+  p {
+    font-size: 1.5rem;
+  }
+`;
+
 function Cart() {
   const cartProducts = useSelector((state) => state.cart.cartProducts);
   const totalPrice = useSelector((state) => state.cart.totalPrice);
   const dispatch = useDispatch();
 
   return (
-    <>
-      {!cartProducts.length && <h1>Your cart looks pretty empty.</h1>}
-      <CartProduct />
-      <h2>Your total is: {formatMoney(totalPrice)}</h2>
-      <PlaceOrderButton
-        disabled={cartProducts.length === 0}
-        type="button"
-        data-testid="order-button"
-        onClick={() => {
-          dispatch(
-            orderActions.placeOrder({
-              products: cartProducts,
-              price: totalPrice,
-            })
-          );
-          dispatch(cartActions.clearCart());
-        }}
-      >
-        Place Order
-      </PlaceOrderButton>
-    </>
+    <CartStyles>
+      {!cartProducts.length && (
+        <>
+          <h1>Your cart looks pretty empty.</h1>
+          <p>Let's fix that!</p>
+          <Link href="/marketplace">
+            <a>Marketplace</a>
+          </Link>
+        </>
+      )}
+
+      {cartProducts.length > 0 && (
+        <>
+          <CartProduct />
+          <h2>Your total is: {formatMoney(totalPrice)}</h2>
+          <PlaceOrderButton
+            disabled={cartProducts.length === 0}
+            type="button"
+            data-testid="order-button"
+            onClick={() => {
+              dispatch(
+                orderActions.placeOrder({
+                  products: cartProducts,
+                  price: totalPrice,
+                })
+              );
+              dispatch(cartActions.clearCart());
+            }}
+          >
+            Place Order
+          </PlaceOrderButton>
+        </>
+      )}
+    </CartStyles>
   );
 }
 
