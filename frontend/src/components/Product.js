@@ -38,9 +38,9 @@ const ProductsList = styled.div`
       grid-column-start: 2;
       width: 4rem;
     }
-    @media (max-width: 750px) {
-      grid-template-columns: auto 1fr;
-    }
+  }
+  @media (max-width: 750px) {
+    grid-template-columns: 1fr;
   }
 `;
 
