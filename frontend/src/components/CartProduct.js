@@ -1,33 +1,10 @@
 import React from "react";
 import Image from "next/image";
-import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import formatMoney from "../utils/formatMoney";
 import * as actions from "../actions/cart";
+import { CartList } from "./styles/CartListStyles";
 
-const CartList = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-flow-auto: columns;
-  max-width: ${(props) => props.theme.maxWidth};
-  button {
-    margin-bottom: 2rem;
-    font-family: "Josefin Slab", serif;
-    font-size: 1.2rem;
-    background: ${(props) => props.theme.darkGreen};
-    color: ${(props) => props.theme.offWhite};
-    padding: 0.5rem 1rem;
-    border: none;
-    :hover {
-      cursor: pointer;
-      background-color: ${(props) => props.theme.offWhite};
-      color: ${(props) => props.theme.darkGreen};
-    }
-  }
-  div {
-    text-align: center;
-  }
-`;
 
 function CartProduct() {
   const cartCount = useSelector((state) => state.cart.cartCount);

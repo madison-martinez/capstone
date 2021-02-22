@@ -2,53 +2,14 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
-import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import DeleteButton from "./DeleteButton";
 import ProductStyles from "./styles/ProductStyles";
 import formatMoney from "../utils/formatMoney";
 import * as actions from "../actions/cart";
+import { DetailsStyles, ProductsList } from "./styles/ProductListStyles";
 
-const ProductsList = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 2rem;
-  margin: 0 auto;
-  max-width: ${(props) => props.theme.maxWidth};
-  .image {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    margin-top: 1rem;
-    h3 {
-      a:hover {
-        background-color: ${(props) => props.theme.blue};
-      }
-    }
-  }
-  a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .button-list {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    .shopping-cart-icon {
-      grid-column-start: 2;
-      width: 4rem;
-    }
-  }
-  @media (max-width: 750px) {
-    grid-template-columns: 1fr;
-  }
-`;
-
-const DetailsStyles = styled.div`
-  margin: 0 auto;
-  text-align: center;
-  font-size: 1.2rem;
-`;
 
 function Product({ products }) {
   const user = useSelector((state) => state.authentication.user);
